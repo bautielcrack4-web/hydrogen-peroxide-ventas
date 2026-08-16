@@ -17,6 +17,8 @@ const PAGES = [
   { src: "/img/recetario-preview/p6.jpg", lock: false },
   { src: "/img/recetario-preview/p7.jpg", lock: false },
   { src: "/img/recetario-preview/p8.jpg", lock: false },
+  { src: "/img/recetario-preview/p9.jpg", lock: false },
+  { src: "/img/recetario-preview/p10.jpg", lock: false },
 ];
 const TOTAL = PAGES.length + 1; // + slide de CTA
 
@@ -51,49 +53,112 @@ export default function FlipbookBotox() {
 
   return (
     <>
-      {/* Sección disparadora */}
-      <section className="grade-joya relative overflow-hidden py-14 text-crema-50 sm:py-16">
-        <div className="contenedor relative z-10 flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10">
+      {/* Sección disparadora — showcase de páginas en abanico (momento WOW) */}
+      <section className="grade-joya relative overflow-hidden py-16 text-crema-50 sm:py-24">
+        {/* halo cálido detrás del abanico */}
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div
+            className="anim-flotar-lento absolute left-1/2 top-1/2 h-[24rem] w-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[6px] sm:h-[34rem] sm:w-[34rem]"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(255,59,46,.28) 0%, rgba(130,20,11,.12) 45%, transparent 72%)",
+            }}
+          />
+        </div>
+
+        <div className="contenedor relative z-10 text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-oro/15 px-3.5 py-1 text-[0.72rem] font-black uppercase tracking-[0.16em] text-oro-claro ring-1 ring-oro-claro/40">
+            <Gift className="h-3.5 w-3.5" aria-hidden />
+            Combo exclusive
+          </span>
+          <h2 className="titulo-serif texto-oro-vivo mx-auto mt-3 max-w-2xl text-[1.9rem] leading-[1.1] sm:text-[2.6rem]">
+            The book that makes every trick actually work.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-[1.02rem] leading-relaxed text-crema-200/85 sm:text-[1.12rem]">
+            The Master Recipe Book gives you the{" "}
+            <strong className="text-oro-claro">exact amount, ratio and time</strong>{" "}
+            for every single use — the difference between “it kind of worked” and{" "}
+            <em>“wow.”</em> See it for yourself:
+          </p>
+
+          {/* ABANICO de páginas reales — clickeable */}
           <button
             onClick={abrir}
-            aria-label="Look inside the guide"
-            className="group relative w-[9.5rem] flex-none [perspective:1200px]"
+            aria-label="Open the book"
+            className="group relative mx-auto mt-8 block h-[250px] w-full max-w-[680px] sm:mt-12 sm:h-[460px]"
           >
-            <img
-              src="/img/recetario-preview/p1.jpg"
-              alt="The Master Recipe Book cover"
-              className="saturar w-full rounded-lg shadow-libro ring-1 ring-oro/30 transition-transform duration-500 [transform:rotateY(-16deg)] group-hover:[transform:rotateY(-6deg)]"
-            />
-            <span className="animate-latido absolute -right-2 -top-2 rounded-full bg-oro px-2.5 py-1 text-[0.6rem] font-bold uppercase tracking-wide text-bosque shadow-tarjeta">
-              Preview
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.52] sm:scale-100">
+              {[
+                { src: "p6", x: -300, r: -15, z: 10 },
+                { src: "p4", x: -155, r: -8, z: 20 },
+                { src: "p5", x: 0, r: 0, z: 30, center: true },
+                { src: "p3", x: 155, r: 8, z: 20 },
+                { src: "p2", x: 300, r: 15, z: 10 },
+              ].map((pg) => (
+                <img
+                  key={pg.src}
+                  src={`/img/recetario-preview/${pg.src}.jpg`}
+                  alt="Master Recipe Book page"
+                  className={`saturar absolute left-1/2 top-1/2 w-[190px] rounded-xl ring-1 ring-oro/25 transition-transform duration-500 ${
+                    pg.center
+                      ? "shadow-[0_40px_80px_-24px_rgba(0,0,0,.75)] ring-oro-claro/60"
+                      : "shadow-[0_30px_60px_-24px_rgba(0,0,0,.7)]"
+                  }`}
+                  style={{
+                    transform: `translate(-50%,-50%) translateX(${pg.x}px) rotate(${pg.r}deg) scale(${pg.center ? 1.12 : 1})`,
+                    zIndex: pg.z,
+                  }}
+                />
+              ))}
+              {/* badges flotantes */}
+              <span
+                className="animate-latido absolute -top-3 left-[6%] z-40 rotate-[-6deg] rounded-full bg-oro px-3.5 py-1.5 text-[0.7rem] font-black uppercase tracking-wide text-bosque shadow-tarjeta"
+                style={{ zIndex: 40 }}
+              >
+                150 exact recipes
+              </span>
+              <span
+                className="absolute bottom-1 right-[6%] z-40 rotate-[5deg] rounded-full bg-teal-abismo/85 px-3.5 py-1.5 text-[0.7rem] font-black uppercase tracking-wide text-oro-claro ring-1 ring-oro-claro/50 backdrop-blur"
+                style={{ zIndex: 40 }}
+              >
+                the “never-mix” chart
+              </span>
             </span>
-            {/* Sello: deja claro que es del combo */}
-            <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 -rotate-3 whitespace-nowrap rounded-md border-2 border-oro-claro/90 bg-teal-abismo/85 px-2.5 py-1 text-[0.56rem] font-black uppercase tracking-[0.14em] text-oro-claro shadow-tarjeta backdrop-blur">
-              Combo exclusive
+            {/* hint de abrir (aparece en hover / siempre visible en móvil) */}
+            <span className="pointer-events-none absolute bottom-0 left-1/2 z-50 -translate-x-1/2 inline-flex items-center gap-2 rounded-full bg-crema-50/10 px-4 py-2 text-[0.82rem] font-semibold text-crema-50 ring-1 ring-crema-50/20 backdrop-blur transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100">
+              <BookOpen className="h-4 w-4 text-oro-claro" aria-hidden />
+              Tap to flip through it
             </span>
           </button>
 
-          <div className="text-center sm:text-left">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-oro/15 px-3 py-1 text-[0.72rem] font-bold uppercase tracking-wide text-oro-claro ring-1 ring-oro-claro/30">
-              <Gift className="h-3.5 w-3.5" aria-hidden />
-              Included in The Complete Method
-            </span>
-            <h2 className="titulo-serif texto-oro-vivo mt-2 text-[1.7rem] sm:text-[2.2rem]">
-              Look inside The Master Recipe Book
-            </h2>
-            <p className="mx-auto mt-3 max-w-md text-[1rem] text-crema-200/85 sm:mx-0">
-              Open it and flip the pages like a real book: real photos,
-              step-by-step recipes and the exact-amount charts. And this is
-              just a <strong className="text-oro-claro">sample</strong> of the 217.
-            </p>
-            <button
-              onClick={abrir}
-              className="boton-oro mt-5 inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-[1rem] font-bold text-bosque shadow-libro transition-all duration-200 hover:-translate-y-0.5 active:scale-[.98]"
-            >
-              <BookOpen className="h-5 w-5" aria-hidden />
-              Open the book
-            </button>
+          {/* stat chips */}
+          <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-2.5 sm:mt-9 sm:gap-3">
+            {[
+              ["150", "exact-amount recipes"],
+              ["96", "pages"],
+              ["15", "chapters"],
+              ["3%", "one cheap bottle"],
+            ].map(([n, l]) => (
+              <span
+                key={l}
+                className="neo inline-flex items-baseline gap-1.5 rounded-full px-4 py-2 text-crema-100"
+              >
+                <b className="font-serif text-lg text-oro-claro">{n}</b>
+                <span className="text-[0.8rem] text-crema-200/80">{l}</span>
+              </span>
+            ))}
           </div>
+
+          <button
+            onClick={abrir}
+            className="boton-oro mt-8 inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[1.05rem] font-bold text-bosque shadow-libro transition-all duration-200 hover:-translate-y-0.5 active:scale-[.98]"
+          >
+            <BookOpen className="h-5 w-5" aria-hidden />
+            Flip through it — free
+          </button>
+          <p className="mt-3 text-[0.9rem] italic text-crema-200/70">
+            Yours free inside the Complete Method. Not sold separately.
+          </p>
         </div>
       </section>
 
