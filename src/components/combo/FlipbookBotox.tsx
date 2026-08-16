@@ -19,6 +19,7 @@ const PAGES = [
   { src: "/img/recetario-preview/p8.jpg", lock: false },
   { src: "/img/recetario-preview/p9.jpg", lock: false },
   { src: "/img/recetario-preview/p10.jpg", lock: false },
+  { src: "/img/recetario-preview/p11.jpg", lock: false },
 ];
 const TOTAL = PAGES.length + 1; // + slide de CTA
 
