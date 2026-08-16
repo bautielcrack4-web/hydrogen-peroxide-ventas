@@ -85,42 +85,37 @@ export default function FlipbookBotox() {
           <button
             onClick={abrir}
             aria-label="Open the book"
-            className="group relative mx-auto mt-8 block h-[250px] w-full max-w-[680px] sm:mt-12 sm:h-[460px]"
+            className="group relative mx-auto mt-6 flex h-[230px] w-full items-center justify-center overflow-visible sm:mt-12 sm:h-[380px]"
           >
-            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.52] sm:scale-100">
+            {/* wrapper de tamaño EXPLÍCITO = página central (evita que el fan colapse) */}
+            <span className="relative block h-[212px] w-[150px] sm:h-[300px] sm:w-[212px]">
               {[
-                { src: "p6", x: -300, r: -15, z: 10 },
-                { src: "p4", x: -155, r: -8, z: 20 },
+                { src: "p6", x: -178, r: -14, z: 10 },
+                { src: "p4", x: -92, r: -7, z: 20 },
                 { src: "p5", x: 0, r: 0, z: 30, center: true },
-                { src: "p3", x: 155, r: 8, z: 20 },
-                { src: "p2", x: 300, r: 15, z: 10 },
+                { src: "p3", x: 92, r: 7, z: 20 },
+                { src: "p2", x: 178, r: 14, z: 10 },
               ].map((pg) => (
                 <img
                   key={pg.src}
                   src={`/img/recetario-preview/${pg.src}.jpg`}
                   alt="Master Recipe Book page"
-                  className={`saturar absolute left-1/2 top-1/2 w-[190px] rounded-xl ring-1 ring-oro/25 transition-transform duration-500 ${
+                  className={`absolute inset-0 h-full w-full rounded-xl object-cover ring-1 transition-transform duration-500 ${
                     pg.center
-                      ? "shadow-[0_40px_80px_-24px_rgba(0,0,0,.75)] ring-oro-claro/60"
-                      : "shadow-[0_30px_60px_-24px_rgba(0,0,0,.7)]"
+                      ? "shadow-[0_40px_80px_-24px_rgba(0,0,0,.8)] ring-oro-claro/60 group-hover:-translate-y-1"
+                      : "shadow-[0_30px_60px_-24px_rgba(0,0,0,.75)] ring-oro/25"
                   }`}
                   style={{
-                    transform: `translate(-50%,-50%) translateX(${pg.x}px) rotate(${pg.r}deg) scale(${pg.center ? 1.12 : 1})`,
+                    transform: `translateX(${pg.x}px) rotate(${pg.r}deg) scale(${pg.center ? 1.1 : 1})`,
                     zIndex: pg.z,
                   }}
                 />
               ))}
               {/* badges flotantes */}
-              <span
-                className="animate-latido absolute -top-3 left-[6%] z-40 rotate-[-6deg] rounded-full bg-oro px-3.5 py-1.5 text-[0.7rem] font-black uppercase tracking-wide text-bosque shadow-tarjeta"
-                style={{ zIndex: 40 }}
-              >
+              <span className="animate-latido absolute -left-9 -top-4 z-40 rotate-[-7deg] rounded-full bg-oro px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-wide text-bosque shadow-tarjeta sm:px-3.5 sm:text-[0.72rem]">
                 150 exact recipes
               </span>
-              <span
-                className="absolute bottom-1 right-[6%] z-40 rotate-[5deg] rounded-full bg-teal-abismo/85 px-3.5 py-1.5 text-[0.7rem] font-black uppercase tracking-wide text-oro-claro ring-1 ring-oro-claro/50 backdrop-blur"
-                style={{ zIndex: 40 }}
-              >
+              <span className="absolute -bottom-3 -right-9 z-40 rotate-[6deg] rounded-full bg-teal-abismo/90 px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-wide text-oro-claro ring-1 ring-oro-claro/50 backdrop-blur sm:px-3.5 sm:text-[0.72rem]">
                 the “never-mix” chart
               </span>
             </span>
