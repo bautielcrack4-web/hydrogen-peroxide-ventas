@@ -51,11 +51,14 @@ export const checkoutConfigurado = product.checkoutUrl !== "#";
 //  Hotmart products exist, they fall back to "#".
 // =============================================================
 export const checkoutHogar =
-  process.env.NEXT_PUBLIC_CHECKOUT_HOGAR_URL || "#"; // VOL 1 ($27)
+  process.env.NEXT_PUBLIC_CHECKOUT_HOGAR_URL ||
+  "https://pay.hotmart.com/H107183932G?checkoutMode=2"; // VOL 1 ($27)
 export const checkoutReparador =
-  process.env.NEXT_PUBLIC_CHECKOUT_REPARADOR_URL || "#"; // VOL 2 ($29)
+  process.env.NEXT_PUBLIC_CHECKOUT_REPARADOR_URL ||
+  "https://pay.hotmart.com/P107183967C?checkoutMode=2"; // VOL 2 ($29)
 export const checkoutCombo =
-  process.env.NEXT_PUBLIC_CHECKOUT_COMBO_URL || "#"; // Complete Method ($47)
+  process.env.NEXT_PUBLIC_CHECKOUT_COMBO_URL ||
+  "https://pay.hotmart.com/H107184004X?checkoutMode=2"; // Complete Method ($47)
 
 // The Master Recipe Book, sold standalone (optional). No product for now.
 export const checkoutRecetario =
