@@ -1,0 +1,365 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --crema: #f6f1e3;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* Base más grande: los lectores de esta página tienen 60+ */
+  font-size: 106.25%;
+  scroll-padding-top: 2rem;
+}
+
+body {
+  background-color: #0a0a0c;
+  color: #22211a;
+  font-weight: 500;
+  line-height: 1.7;
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: rgba(255,59,46,.28);
+    color: #22211a;
+  }
+  /* Foco visible y generoso (accesibilidad) */
+  :focus-visible {
+    outline: 3px solid #C41306;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .contenedor {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .titulo-serif {
+    @apply font-serif font-extrabold leading-[1.1] tracking-[-0.02em] text-tinta;
+  }
+  .etiqueta {
+    @apply text-[0.78rem] font-bold uppercase tracking-[0.2em] text-teal;
+  }
+  .prosa {
+    @apply max-w-prosa text-[1.15rem] leading-[1.75] text-tinta/85;
+  }
+  /* Palabra o frase acentuada dentro de un título */
+  .acento {
+    @apply text-teal;
+  }
+  .regla-corta::before {
+    content: "";
+    @apply mr-3 inline-block h-px w-10 align-middle;
+    background-color: #ddcfab;
+  }
+}
+
+/* ===== Premium: flotación, volumen de libro y brillos ===== */
+@keyframes flotar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@keyframes flotar-lento {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+@keyframes chispa {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.6) rotate(45deg);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+@keyframes halo-latido {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+@layer components {
+  .anim-flotar {
+    animation: flotar 6s ease-in-out infinite;
+  }
+  .anim-flotar-lento {
+    animation: flotar-lento 7.5s ease-in-out infinite;
+  }
+  .anim-chispa {
+    animation: chispa 5s ease-in-out infinite;
+  }
+  /* Escena 3D para las portadas tipo libro */
+  .escena-3d {
+    perspective: 1400px;
+  }
+  /* Botón oro con brillo metálico */
+  .boton-oro {
+    background-image: linear-gradient(
+      110deg,
+      #E11D0F 0%,
+      #FF6B5E 44%,
+      #E11D0F 56%,
+      #C41306 100%
+    );
+    background-size: 200% 100%;
+    transition: background-position 0.5s ease, transform 0.2s ease,
+      box-shadow 0.3s ease;
+  }
+  .boton-oro:hover {
+    background-position: 100% 50%;
+  }
+}
+
+/* ================= Capa de efectos premium (marca teal/oro) ================= */
+
+/* Glow emisivo (light bleeding) en los CTA dorados */
+.boton-oro {
+  box-shadow:
+    0 8px 24px -8px rgba(255, 59, 46, 0.6),
+    0 0 20px -2px rgba(255, 59, 46, 0.45);
+}
+.boton-oro:hover {
+  box-shadow:
+    0 12px 34px -8px rgba(255, 59, 46, 0.78),
+    0 0 30px 0 rgba(255, 59, 46, 0.58);
+}
+
+/* Oro líquido animado (títulos sobre fondo oscuro) */
+@keyframes brillo-oro {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.texto-oro-vivo {
+  background: linear-gradient(
+    92deg, #E11D0F 0%, #FF3B2E 22%, #FFD9D5 42%, #fff 50%,
+    #FFD9D5 58%, #FF3B2E 78%, #E11D0F 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 12px rgba(255, 59, 46, 0.5));
+  animation: brillo-oro 5s ease-in-out infinite;
+}
+
+/* Card "legendaria": aro de gradiente dorado que gira (loot épico) */
+.card-legendaria { position: relative; border-radius: 1.3rem; }
+.card-legendaria::before,
+.card-legendaria::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  z-index: 0;
+  border-radius: 1.3rem;
+  background: conic-gradient(
+    from 0deg, #FF3B2E, #FFD9D5, #E11D0F, #C41306, #FFD9D5, #E11D0F, #FF3B2E
+  );
+  animation: girar-aro 6s linear infinite;
+}
+.card-legendaria::before { filter: blur(10px); opacity: 0.9; }
+.card-legendaria::after { inset: -2px; }
+.card-legendaria > * { position: relative; z-index: 1; }
+@keyframes girar-aro { to { transform: rotate(360deg); } }
+
+/* Aurora */
+/* Sin filter:blur ni will-change: el degradé radial ya da el borde suave.
+   Con blur + will-change dentro de overflow:hidden, Chrome/Safari rasterizan
+   la capa y al recortarla el blur samplea negro fuera de los bordes → deja
+   un rectángulo oscuro con esquina redondeada sobre el texto. Quitándolos
+   el fondo queda igual de suave y sin ningún bloque. */
+.aurora-blob { position: absolute; border-radius: 50%; opacity: 0.5; }
+@keyframes derivar-a { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(50px,-34px) scale(1.15)} }
+@keyframes derivar-b { 0%,100%{transform:translate(0,0) scale(1.1)} 50%{transform:translate(-46px,30px) scale(1)} }
+@keyframes derivar-c { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(30px,34px) scale(1.2)} }
+
+/* Chispas / confeti */
+@keyframes titilar { 0%,100%{opacity:0;transform:scale(.5)} 50%{opacity:1;transform:scale(1)} }
+@keyframes caer-moneda {
+  0% { opacity: 0; transform: translate(0,-10px) rotate(0) scale(.6); }
+  10% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--dx,0),220px) rotate(var(--rot,360deg)) scale(1); }
+}
+
+/* Slam del precio + latido de badges + barrido de botones */
+@keyframes slam { 0%{opacity:0;transform:scale(1.6)} 60%{opacity:1;transform:scale(.94)} 100%{opacity:1;transform:scale(1)} }
+.animate-slam { animation: slam .6s cubic-bezier(.2,.9,.3,1.2) both; }
+@keyframes latido { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+.animate-latido { animation: latido 1.8s ease-in-out infinite; }
+@keyframes barrido { 0%{transform:translateX(-120%) skewX(-18deg)} 100%{transform:translateX(320%) skewX(-18deg)} }
+.barrido::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,.35) 50%, transparent 80%);
+  transform: translateX(-120%) skewX(-18deg);
+}
+.barrido:hover::after { animation: barrido .9s ease; }
+
+/* Halo del hero que respira */
+@keyframes respira { 0%,100%{opacity:.5;transform:scale(1)} 50%{opacity:.85;transform:scale(1.06)} }
+.animate-respira { animation: respira 7s ease-in-out infinite; }
+
+/* Glass */
+.glass {
+  background: rgba(246, 241, 227, 0.6);
+  -webkit-backdrop-filter: blur(14px) saturate(1.8);
+  backdrop-filter: blur(14px) saturate(1.8);
+}
+.glass-dark {
+  background: rgba(18,13,13,0.6);
+  -webkit-backdrop-filter: blur(14px) saturate(1.6);
+  backdrop-filter: blur(14px) saturate(1.6);
+}
+
+/* Neomorfismo (chips sobre superficie teal oscura) */
+.neo {
+  background: #191a1f;
+  box-shadow: 5px 5px 12px rgba(0,0,0,.5), -5px -5px 12px rgba(255,255,255,.04), inset 0 0 0 1px rgba(255,59,46,.10);
+}
+.neo-press { transition: box-shadow .15s ease, transform .15s ease; }
+.neo-press:active {
+  box-shadow: inset 4px 4px 9px rgba(0,0,0,.4), inset -4px -4px 9px rgba(255,255,255,.06);
+  transform: translateY(1px);
+}
+
+/* Saturación / vibrancia y color-grade cálido (LUT-like) */
+.saturar { filter: saturate(1.22) contrast(1.05) brightness(1.02); }
+.saturar-max { filter: saturate(1.42) contrast(1.08) brightness(1.03); }
+.grade-joya::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: linear-gradient(135deg, rgba(255,59,46,.16), transparent 42%, rgba(0,0,0,.18));
+  mix-blend-mode: soft-light;
+}
+
+/* Precio "vivo" (oro intenso; P3 más profundo en OLED) */
+.precio-vivo { color: #b98a2e; }
+.glow-oro { filter: drop-shadow(0 0 10px rgba(255,59,46,.55)); }
+
+/* Micro-recompensa: barrido metálico al hover en imágenes */
+.reveal-shine { position: relative; overflow: hidden; }
+.reveal-shine::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%);
+  transform: translateX(-130%); transition: transform .75s ease;
+}
+.reveal-shine:hover::after { transform: translateX(130%); }
+
+/* Wide color gamut P3 (OLED) */
+@supports (color: color(display-p3 1 1 1)) {
+  .precio-vivo { color: color(display-p3 0.88 0.15 0.08); }
+  .boton-oro {
+    background-image: linear-gradient(
+      110deg, color(display-p3 0.85 0.13 0.09) 0%, color(display-p3 1 0.45 0.38) 44%,
+      color(display-p3 0.85 0.13 0.09) 56%, color(display-p3 0.72 0.08 0.04) 100%
+    );
+  }
+  .texto-oro-vivo {
+    background-image: linear-gradient(
+      92deg, color(display-p3 0.85 0.13 0.09) 0%, color(display-p3 1 0.28 0.2) 22%,
+      color(display-p3 1 0.86 0.84) 42%, #fff 50%, color(display-p3 1 0.86 0.84) 58%,
+      color(display-p3 1 0.28 0.2) 78%, color(display-p3 0.85 0.13 0.09) 100%
+    );
+  }
+}
+
+/* Fluidez: no renderizar fuera de pantalla */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 720px; }
+
+/* Barra de progreso de scroll */
+.barra-progreso {
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #E11D0F, #FF3B2E, #C41306);
+}
+
+/* Apertura del libro (flipbook) */
+@keyframes abrir-libro {
+  0% { opacity: 0; transform: rotateY(-42deg) scale(0.8); }
+  100% { opacity: 1; transform: rotateY(0deg) scale(1); }
+}
+.anim-abrir-libro { animation: abrir-libro 0.6s cubic-bezier(0.2, 0.8, 0.25, 1) both; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.anim-fade-in { animation: fade-in 0.35s ease both; }
+
+/* Entrada con impulso (la invitación de Federer) */
+@keyframes entra-pop {
+  0% { opacity: 0; transform: translateY(26px) scale(0.9); }
+  60% { transform: translateY(-4px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.anim-entra-pop { animation: entra-pop 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.3) both; }
+
+/* Llamada de atención (toque cada tanto para que respondas) */
+@keyframes toc {
+  0%, 92%, 100% { transform: translateY(0) rotate(0); }
+  94% { transform: translateY(-5px) rotate(-1.5deg); }
+  96% { transform: translateY(0) rotate(1.5deg); }
+  98% { transform: translateY(-2px) rotate(0); }
+}
+.anim-toc { animation: toc 4.5s ease-in-out infinite; }
+
+/* Luz verde "en línea" */
+@keyframes glow-verde {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 224, 106, 0.5); }
+  50% { box-shadow: 0 0 16px 4px rgba(34, 224, 106, 0.8); }
+}
+.glow-verde { animation: glow-verde 1.8s ease-in-out infinite; }
+
+/* Marquee de testimonios */
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.marquee-track { animation: marquee 46s linear infinite; width: max-content; }
+.marquee-track:hover { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track { animation: none !important; }
+}
+
+/* ===== Lienzo cinematográfico continuo (funde las secciones) ===== */
+.lienzo {
+  background-color: #0a0a0c;
+  background-image:
+    radial-gradient(1100px 700px at 50% 6%, rgba(225,29,15,0.14), transparent 70%),
+    radial-gradient(950px 620px at 100% 38%, rgba(225,29,15,0.08), transparent 70%),
+    radial-gradient(950px 620px at 0% 72%, rgba(225,29,15,0.07), transparent 70%);
+  background-repeat: no-repeat;
+  background-attachment: fixed, fixed, fixed;
+}
+/* Separadores suaves entre bloques (línea de luz muy tenue) */
+.divisor-luz { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); }

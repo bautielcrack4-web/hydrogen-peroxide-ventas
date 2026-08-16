@@ -1,0 +1,44 @@
+[
+  {
+    "texto": "The first thing I tried was the bathroom and I was blown away — the toilet and grout came out like new, without that harsh bleach smell. I barely buy cleaning products anymore.",
+    "nombre": "Ellen R.",
+    "pais": "62 · Florida",
+    "foto": "/images/reviews/combo-01.jpg",
+    "origen": "hogar"
+  },
+  {
+    "texto": "The washer had a horrible smell and the step from The Repairman's Secret got it spotless. I saved myself the service call — the tech charged a fortune just to show up.",
+    "nombre": "Rick A.",
+    "pais": "58 · Texas",
+    "foto": "/images/reviews/combo-02.jpg",
+    "origen": "reparador"
+  },
+  {
+    "texto": "The kitchen and sink shine with almost nothing. What I like most is that now I know the exact amount; I used to eyeball it and it never worked.",
+    "nombre": "Martha C.",
+    "pais": "54 · Ohio",
+    "foto": "/images/reviews/combo-03.jpg",
+    "origen": "hogar"
+  },
+  {
+    "texto": "I bought it half-doubting and ended up using it even in the garden. The plants look healthier and it killed off a fungus that wouldn't quit. Dirt cheap.",
+    "nombre": "George P.",
+    "pais": "49 · Arizona",
+    "foto": "/images/reviews/combo-04.jpg",
+    "origen": "hogar"
+  },
+  {
+    "texto": "My daughter printed it out for me and I keep it in the kitchen like a manual. It's all organized room by room with the right measurements. At my age I appreciate that it's easy to follow.",
+    "nombre": "Rose M.",
+    "pais": "68 · Pennsylvania",
+    "foto": "/images/reviews/combo-05.jpg",
+    "origen": "combo"
+  },
+  {
+    "texto": "I cleaned the AC following the guide and it cools like it used to. I thought I was going to have to replace it. With the combo I've already handled half the house.",
+    "nombre": "Lou F.",
+    "pais": "61 · Nevada",
+    "foto": "/images/reviews/combo-06.jpg",
+    "origen": "reparador"
+  }
+]
