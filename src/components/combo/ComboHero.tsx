@@ -69,8 +69,10 @@ export default function ComboHero() {
                 }}
               />
             </h1>
-            <p className="mx-auto mt-4 max-w-xl text-[0.98rem] leading-relaxed text-crema-200/85 sm:mt-5 sm:max-w-2xl sm:text-[1.1rem]">
-              {comboHero.subtitulo}
+            <p className="mx-auto mt-4 max-w-md text-[1.05rem] font-medium leading-snug text-crema-100 sm:mt-5 sm:max-w-2xl sm:text-[1.2rem]">
+              300+ cleaning, garden &amp; repair tricks — with the{" "}
+              <span className="font-semibold text-oro-claro">exact amounts</span>. One
+              $1 bottle.
             </p>
           </div>
         </Reveal>
@@ -156,6 +158,13 @@ export default function ComboHero() {
               {comboHero.anclaValor}
             </p>
           </div>
+        </Reveal>
+
+        {/* Historia completa (debajo del CTA: no tapa el primer impacto en móvil) */}
+        <Reveal delay={210}>
+          <p className="mx-auto mt-8 max-w-2xl text-center text-[0.98rem] leading-relaxed text-crema-200/80 sm:mt-10 sm:text-[1.05rem]">
+            {comboHero.subtitulo}
+          </p>
         </Reveal>
 
         {/* Stats (debajo del CTA) */}
