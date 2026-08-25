@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { X, ChevronLeft, ChevronRight, Lock, BookOpen, ArrowRight, Star, Gift } from "lucide-react";
 import CheckoutLink from "@/components/ui/CheckoutLink";
@@ -56,17 +57,6 @@ export default function FlipbookBotox() {
     <>
       {/* Sección disparadora — showcase de páginas en abanico (momento WOW) */}
       <section className="relative overflow-hidden py-24 text-crema-50 sm:py-32">
-        {/* halo cálido detrás del abanico */}
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div
-            className="anim-flotar-lento absolute left-1/2 top-1/2 h-[24rem] w-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[6px] sm:h-[34rem] sm:w-[34rem]"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(255,59,46,.28) 0%, rgba(130,20,11,.12) 45%, transparent 72%)",
-            }}
-          />
-        </div>
-
         <div className="contenedor relative z-10 text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] px-3.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-crema-200 ring-1 ring-white/12">
             <Gift className="h-3.5 w-3.5" aria-hidden />
@@ -82,50 +72,59 @@ export default function FlipbookBotox() {
             <em>“wow.”</em> See it for yourself:
           </p>
 
-          {/* ABANICO de páginas reales — clickeable */}
+          {/* El libro ABIERTO, fotografiado. Reemplaza al abanico de
+              miniaturas recortadas: una foto real del objeto prueba más que
+              cinco thumbnails en object-cover. */}
           <button
             onClick={abrir}
             aria-label="Open the book"
-            className="group relative mx-auto mt-6 flex h-[230px] w-full items-center justify-center overflow-visible sm:mt-12 sm:h-[380px]"
+            className="group relative mx-auto mt-10 block w-full max-w-3xl sm:mt-14"
           >
-            {/* wrapper de tamaño EXPLÍCITO = página central (evita que el fan colapse) */}
-            <span className="relative block h-[212px] w-[150px] sm:h-[300px] sm:w-[212px]">
-              {[
-                { src: "p6", x: -178, r: -14, z: 10 },
-                { src: "p4", x: -92, r: -7, z: 20 },
-                { src: "p5", x: 0, r: 0, z: 30, center: true },
-                { src: "p3", x: 92, r: 7, z: 20 },
-                { src: "p2", x: 178, r: 14, z: 10 },
-              ].map((pg) => (
-                <img
-                  key={pg.src}
-                  src={`/img/recetario-preview/${pg.src}.jpg`}
-                  alt="Master Recipe Book page"
-                  className={`absolute inset-0 h-full w-full rounded-xl object-cover ring-1 transition-transform duration-500 ${
-                    pg.center
-                      ? "shadow-libro ring-white/25 group-hover:-translate-y-1"
-                      : "shadow-[0_30px_60px_-24px_rgba(0,0,0,.75)] ring-oro/25"
-                  }`}
-                  style={{
-                    transform: `translateX(${pg.x}px) rotate(${pg.r}deg) scale(${pg.center ? 1.1 : 1})`,
-                    zIndex: pg.z,
-                  }}
-                />
-              ))}
-              {/* badges flotantes */}
-              <span className="absolute -left-6 -top-3 z-40 rounded-md bg-oro px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-white shadow-tarjeta sm:px-3.5 sm:text-[0.68rem]">
-                150 exact recipes
-              </span>
-              <span className="absolute -bottom-3 -right-6 z-40 rounded-md bg-teal-abismo/90 px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-crema-200 ring-1 ring-white/15 backdrop-blur sm:px-3.5 sm:text-[0.68rem]">
-                the “never-mix” chart
-              </span>
+            <span className="relative block overflow-hidden rounded-xl border border-white/[0.07]">
+              <Image
+                src="/img/recetario-preview/spread_1.jpg"
+                alt="The Master Recipe Book open at the dilution chart"
+                width={1536}
+                height={1024}
+                sizes="(max-width: 768px) 100vw, 768px"
+                quality={86}
+                className="block h-auto w-full"
+              />
             </span>
-            {/* hint de abrir (aparece en hover / siempre visible en móvil) */}
-            <span className="pointer-events-none absolute bottom-0 left-1/2 z-50 -translate-x-1/2 inline-flex items-center gap-2 rounded-full bg-crema-50/10 px-4 py-2 text-[0.82rem] font-semibold text-crema-50 ring-1 ring-crema-50/20 backdrop-blur transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100">
-              <BookOpen className="h-4 w-4 text-crema-200" aria-hidden />
+            <span className="absolute -left-2 -top-3 z-40 rounded-md bg-oro px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-white shadow-tarjeta sm:-left-4 sm:px-3.5 sm:text-[0.68rem]">
+              150 exact recipes
+            </span>
+            <span className="absolute -bottom-3 -right-2 z-40 rounded-md bg-teal-abismo/90 px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-crema-200 ring-1 ring-white/15 backdrop-blur sm:-right-4 sm:px-3.5 sm:text-[0.68rem]">
+              the &ldquo;never-mix&rdquo; chart
+            </span>
+            <span className="pointer-events-none absolute bottom-4 left-1/2 z-50 inline-flex -translate-x-1/2 items-center gap-2 rounded-full bg-teal-abismo/80 px-4 py-2 text-[0.82rem] font-medium text-crema-50 ring-1 ring-white/15 backdrop-blur transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100">
+              <BookOpen className="h-4 w-4" aria-hidden />
               Tap to flip through it
             </span>
           </button>
+
+          {/* Dos spreads más: la prueba de que el libro existe de verdad */}
+          <div className="mx-auto mt-5 grid max-w-3xl gap-5 sm:grid-cols-2">
+            {[
+              { src: "spread_2", alt: "Open at why 3% works and the appliance rescue map" },
+              { src: "spread_3", alt: "Open at the garden guide and the never-mix chart" },
+            ].map((sp) => (
+              <div
+                key={sp.src}
+                className="overflow-hidden rounded-xl border border-white/[0.07]"
+              >
+                <Image
+                  src={`/img/recetario-preview/${sp.src}.jpg`}
+                  alt={sp.alt}
+                  width={1536}
+                  height={1024}
+                  sizes="(max-width: 640px) 100vw, 374px"
+                  quality={82}
+                  className="block h-auto w-full"
+                />
+              </div>
+            ))}
+          </div>
 
           {/* stat chips */}
           <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-2.5 sm:mt-9 sm:gap-3">
