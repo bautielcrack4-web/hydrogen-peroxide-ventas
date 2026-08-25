@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { ShieldCheck, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import SelloGarantia from "@/components/ui/SelloGarantia";
 import ComboTopBar from "@/components/combo/ComboTopBar";
 import ComboHero from "@/components/combo/ComboHero";
 import ProductoReal from "@/components/combo/ProductoReal";
@@ -14,6 +15,7 @@ import {
   ComboCapitulos,
   ComboReviews,
   ComboAutor,
+  PagoBadges,
 } from "@/components/combo/ComboSections";
 import ValueStackRegalado from "@/components/combo/ValueStackRegalado";
 import Footer from "@/components/landing/Footer";
@@ -109,8 +111,12 @@ export default function MetodoCompleto() {
         <section className="py-24 text-crema-50 sm:py-28">
           <div className="contenedor">
             <Reveal>
-              <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-10 text-center">
-                <ShieldCheck className="h-10 w-10 text-crema-200" aria-hidden />
+              <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-10 text-center sm:p-12">
+                <SelloGarantia
+                  size={140}
+                  dias={product.garantiaDias}
+                  className="text-crema-200"
+                />
                 <h2 className="titulo-serif text-[1.6rem]">
                   {comboGarantia.titulo}
                 </h2>
@@ -118,6 +124,10 @@ export default function MetodoCompleto() {
                   {comboGarantia.texto}
                 </p>
               </div>
+
+              {/* Candado, reembolso, entrega y pago único: las cuatro
+                  objeciones que frenan justo en el botón. */}
+              <PagoBadges className="mt-14" />
             </Reveal>
           </div>
         </section>

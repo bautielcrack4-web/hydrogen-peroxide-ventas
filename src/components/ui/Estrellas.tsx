@@ -10,7 +10,7 @@ export default function Estrellas({
   return (
     <div className={`flex gap-0.5 ${className}`} aria-label="5 de 5 estrellas">
       {Array.from({ length: 5 }).map((_, i) => (
-        <Star key={i} className={`${size} fill-oro text-oro`} aria-hidden />
+        <Star key={i} className={`${size} fill-estrella text-estrella`} aria-hidden />
       ))}
     </div>
   );

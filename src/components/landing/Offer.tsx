@@ -42,7 +42,7 @@ export default function Offer() {
                     >
                       {item.estrella && (
                         <Star
-                          className="h-4 w-4 flex-none fill-oro text-oro"
+                          className="h-4 w-4 flex-none fill-estrella text-estrella"
                           aria-hidden
                         />
                       )}

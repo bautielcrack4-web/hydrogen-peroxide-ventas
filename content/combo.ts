@@ -177,12 +177,12 @@ export const comboValueStack = {
   hoy: "$47",
 };
 
-/** Micro trust badges under the CTAs. */
+/** Trust row under the CTAs. `icono` maps to a lucide icon in ComboSections. */
 export const comboPago = [
-  "Secure one-time payment",
-  "Processed by Hotmart",
-  "PDF instantly in your inbox",
-  "Yours forever · no subscription",
+  { icono: "lock", t: "Encrypted checkout", d: "Processed by Hotmart" },
+  { icono: "refund", t: "7-day refund", d: "One email, no questions" },
+  { icono: "instant", t: "Instant access", d: "PDFs in your inbox" },
+  { icono: "once", t: "One-time payment", d: "No subscription, ever" },
 ];
 
 /** Legal footer disclaimer. */

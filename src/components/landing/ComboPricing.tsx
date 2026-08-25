@@ -266,7 +266,7 @@ function PlanCard({
                 className="flex items-baseline justify-between gap-3 text-[0.85rem] text-tinta/80"
               >
                 <span className="flex items-baseline gap-1.5">
-                  <Star className="h-3.5 w-3.5 flex-none translate-y-0.5 fill-oro text-oro" aria-hidden />
+                  <Star className="h-3.5 w-3.5 flex-none translate-y-0.5 fill-estrella text-estrella" aria-hidden />
                   {b.titulo}
                 </span>
                 <span className="whitespace-nowrap font-semibold text-tinta/45 line-through">
@@ -305,11 +305,12 @@ function PlanCard({
           </span>
         </CheckoutLink>
         <p
-          className={`mt-3 text-center text-[0.72rem] font-semibold uppercase tracking-[0.14em] ${
+          className={`mt-3 flex items-center justify-center gap-1.5 text-center text-[0.7rem] font-semibold uppercase tracking-[0.12em] ${
             destacado ? "text-tinta/50" : "text-crema-200/50"
           }`}
         >
-          One-time payment · instant access · 7-day guarantee
+          <Lock className="h-3 w-3 flex-none" strokeWidth={2.4} aria-hidden />
+          Encrypted checkout · 7-day refund
         </p>
       </div>
     </div>

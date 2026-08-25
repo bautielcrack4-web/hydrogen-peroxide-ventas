@@ -228,7 +228,7 @@ export default function FlipbookBotox() {
                           <div className="text-center text-tinta">
                             <div className="mb-2 flex justify-center gap-1 text-oro">
                               {[...Array(5)].map((_, s) => (
-                                <Star key={s} className="h-4 w-4 fill-oro" aria-hidden />
+                                <Star key={s} className="h-4 w-4 fill-estrella text-estrella" aria-hidden />
                               ))}
                             </div>
                             <h3 className="titulo-serif text-[1.4rem] text-teal">

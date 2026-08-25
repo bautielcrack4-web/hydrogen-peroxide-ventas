@@ -43,9 +43,13 @@ const config: Config = {
         },
         oro: {
           DEFAULT: "#D0342A", // ROJO de acción — el ÚNICO color saturado
-          claro: "#D9D5CE", // blanco cálido: micro-acentos, iconos, estrellas
+          claro: "#D9D5CE", // blanco cálido: micro-acentos e iconos
         },
         vino: "#A0231B",
+        // EXCEPCION deliberada a la regla de "un solo color saturado":
+        // las estrellas de rating en gris se leen como "sin puntuar", que es
+        // peor que un segundo acento. El oro se usa SOLO en estrellas.
+        estrella: "#F2A72C",
         // Rojo de urgencia/alertas (descuentos, ahorro). Misma familia: no
         // se abren dos rojos distintos.
         alerta: {

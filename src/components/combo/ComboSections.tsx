@@ -1,5 +1,24 @@
 import Image from "next/image";
-import { Lock, Check, Star, ShieldCheck, Zap, FileText, Infinity as InfinityIcon } from "lucide-react";
+import {
+  Lock,
+  Check,
+  Star,
+  ShieldCheck,
+  Zap,
+  ShowerHead,
+  Utensils,
+  Shirt,
+  Sprout,
+  PaintRoller,
+  WashingMachine,
+  AirVent,
+  Beaker,
+  TriangleAlert,
+  Car,
+  Wrench,
+  RotateCcw,
+  BadgeCheck,
+} from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import ReviewsCarousel from "@/components/combo/ReviewsCarousel";
 import { checkoutCombo, planes } from "@/config/product";
@@ -16,6 +35,25 @@ const combo = planes.find((p) => p.id === "combo")!;
 type Reseña = { texto: string; nombre: string; pais: string; foto: string };
 const RESENAS = comboWall as Reseña[];
 
+/** Un icono por capítulo, en el mismo orden que `comboCapitulos.items`. */
+const ICONOS_CAPITULO = [
+  ShowerHead,   // baño
+  Utensils,     // cocina
+  Shirt,        // lavado
+  Sprout,       // jardín
+  PaintRoller,  // pisos, alfombras y vidrios
+  WashingMachine, // el reparador
+  AirVent,      // aire acondicionado
+];
+
+/** Y uno por capítulo bloqueado, en el orden de `bloqueados`. */
+const ICONOS_BLOQUEADO = [
+  Beaker,        // recetario: las medidas exactas
+  TriangleAlert, // qué NUNCA mezclar
+  Car,           // auto
+  Wrench,        // cañerías y plagas
+];
+
 function CtaOro({ children }: { children: React.ReactNode }) {
   return (
     <a
@@ -27,18 +65,44 @@ function CtaOro({ children }: { children: React.ReactNode }) {
   );
 }
 
-const PAGO_ICONS = [ShieldCheck, Zap, FileText, InfinityIcon];
+const PAGO_ICONS: Record<string, typeof ShieldCheck> = {
+  lock: Lock,
+  refund: RotateCcw,
+  instant: Zap,
+  once: BadgeCheck,
+};
 
-export function PagoBadges() {
+/**
+ * Fila de confianza bajo los CTA: candado, reembolso, entrega y pago único.
+ * Son las cuatro objeciones que frenan la compra justo en el botón, así que
+ * van SIEMPRE pegadas a él y no en una sección aparte.
+ */
+export function PagoBadges({ className = "" }: { className?: string }) {
   return (
-    <ul className="mx-auto mt-6 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
-      {comboPago.map((t, i) => {
-        const Icono = PAGO_ICONS[i] ?? ShieldCheck;
+    <ul
+      className={`mx-auto grid max-w-3xl grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4 ${
+        className || "mt-10"
+      }`}
+    >
+      {comboPago.map((it) => {
+        const Icono = PAGO_ICONS[it.icono] ?? ShieldCheck;
         return (
-          <li key={t} className="flex flex-col items-center gap-1.5 text-center">
-            <Icono className="h-5 w-5 text-crema-200" aria-hidden />
-            <span className="text-[0.78rem] font-semibold leading-tight text-crema-200/75">
-              {t}
+          <li
+            key={it.t}
+            className="flex flex-col items-center gap-2 px-2 text-center"
+          >
+            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.09] bg-white/[0.03]">
+              <Icono
+                className="h-[1.05rem] w-[1.05rem] text-crema-200"
+                strokeWidth={1.7}
+                aria-hidden
+              />
+            </span>
+            <span className="text-[0.8rem] font-semibold leading-tight text-crema-50">
+              {it.t}
+            </span>
+            <span className="-mt-1 text-[0.74rem] leading-tight text-crema-200/70">
+              {it.d}
             </span>
           </li>
         );
@@ -72,20 +136,47 @@ export function ComboCapitulos() {
                 key={c}
                 className="flex items-start gap-4 rounded-xl bg-white/[0.03] px-5 py-4 ring-1 ring-white/[0.07]"
               >
-                <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-teal text-[0.72rem] font-bold text-crema-50">
-                  {i + 1}
+                <span className="mt-0.5 flex h-9 w-9 flex-none items-center justify-center rounded-full bg-white/[0.05] ring-1 ring-white/[0.09]">
+                  {(() => {
+                    const Icono = ICONOS_CAPITULO[i] ?? Check;
+                    return (
+                      <Icono
+                        className="h-[1.05rem] w-[1.05rem] text-crema-200"
+                        strokeWidth={1.6}
+                        aria-hidden
+                      />
+                    );
+                  })()}
                 </span>
-                <span className="text-[0.98rem] text-crema-100">{c}</span>
+                <span className="text-[0.98rem] text-crema-100">
+                  <span className="mr-2 font-serif text-[0.72rem] tabular-nums text-crema-200/45">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {c}
+                </span>
                 <Check className="ml-auto mt-1 h-4 w-4 flex-none text-crema-200" aria-hidden />
               </li>
             ))}
-            {comboCapitulos.bloqueados.map((c) => (
+            {comboCapitulos.bloqueados.map((c, bi) => (
               <li
                 key={c}
                 className="flex items-start gap-4 rounded-xl border border-dashed border-white/12 px-5 py-4"
               >
-                <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-white/[0.07]">
-                  <Lock className="h-3.5 w-3.5 text-oro-claro" aria-hidden />
+                <span className="relative mt-0.5 flex h-9 w-9 flex-none items-center justify-center rounded-full border border-dashed border-white/[0.14] bg-white/[0.02]">
+                  {(() => {
+                    const Icono = ICONOS_BLOQUEADO[bi] ?? Lock;
+                    return (
+                      <Icono
+                        className="h-[1.05rem] w-[1.05rem] text-crema-200/65"
+                        strokeWidth={1.6}
+                        aria-hidden
+                      />
+                    );
+                  })()}
+                  <Lock
+                    className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full bg-teal-abismo p-[3px] text-oro"
+                    aria-hidden
+                  />
                 </span>
                 <span className="text-[0.98rem] italic text-crema-200/70">{c}</span>
                 <span className="ml-auto text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-crema-200">
@@ -118,9 +209,9 @@ export function ComboReviews() {
             <h2 className="display-seccion mt-4">
               What people who already own it say
             </h2>
-            <div className="mt-5 flex items-center justify-center gap-2 text-oro-claro">
+            <div className="mt-5 flex items-center justify-center gap-2 text-estrella">
               {[...Array(5)].map((_, s) => (
-                <Star key={s} className="h-5 w-5 fill-oro-claro" aria-hidden />
+                <Star key={s} className="h-5 w-5 fill-estrella" aria-hidden />
               ))}
               <span className="ml-1 text-[0.9rem] text-crema-200">
                 {RESENAS.length} verified reviews

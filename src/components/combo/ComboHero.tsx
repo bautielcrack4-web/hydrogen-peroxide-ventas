@@ -1,4 +1,4 @@
-import { ShieldCheck } from "lucide-react";
+import { Lock } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import BookCover3D from "@/components/combo/BookCover3D";
 import CountUp from "@/components/ui/CountUp";
@@ -111,8 +111,8 @@ export default function ComboHero() {
             </span>
           </a>
           <p className="mt-4 flex items-center gap-2 text-[0.82rem] text-crema-200">
-            <ShieldCheck className="h-4 w-4 flex-none" aria-hidden />
-            One-time payment · instant access · 7-day guarantee
+            <Lock className="h-3.5 w-3.5 flex-none" strokeWidth={2} aria-hidden />
+            Encrypted checkout · instant access · 7-day refund
           </p>
         </div>
       </div>

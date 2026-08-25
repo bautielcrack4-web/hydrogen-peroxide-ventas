@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Gift } from "lucide-react";
+import { Check, Gift, Lock } from "lucide-react";
 import Anim from "@/components/ui/Anim";
 import CountUp from "@/components/ui/CountUp";
 import CheckoutLink from "@/components/ui/CheckoutLink";
@@ -107,8 +107,9 @@ export default function ValueStackRegalado() {
           >
             Get the complete method · ${HOY}
           </CheckoutLink>
-          <p className="mt-3 text-center text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-tinta/50">
-            One-time payment · instant access · 7-day guarantee
+          <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-tinta/50">
+            <Lock className="h-3 w-3 flex-none" strokeWidth={2.4} aria-hidden />
+            Encrypted checkout · 7-day refund
           </p>
         </div>
       </div>

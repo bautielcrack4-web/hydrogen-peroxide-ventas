@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Ornamento from "@/components/ui/Ornamento";
+import { IsotipoLinea } from "@/components/ui/Marca";
 import { product } from "@/config/product";
 
 const enlaces = [
@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/[0.06] bg-[#0b0c0e] pb-28 pt-16 text-crema-200 sm:pb-16">
       <div className="contenedor text-center">
-        <Ornamento color="text-crema-200/40" />
+        <IsotipoLinea size={34} className="mx-auto text-crema-200" />
         <p className="mt-6 font-serif text-lg font-bold uppercase tracking-[0.22em] text-crema-100">
           {product.marca}
         </p>

@@ -60,9 +60,9 @@ export default function ReviewsCarousel() {
               </span>
               {/* Nombre sobre gradiente abajo */}
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 pt-10">
-                <div className="mb-1 flex gap-0.5 text-oro-claro">
+                <div className="mb-1 flex gap-0.5 text-estrella">
                   {[...Array(5)].map((_, s) => (
-                    <Star key={s} className="h-3.5 w-3.5 fill-oro-claro" aria-hidden />
+                    <Star key={s} className="h-3.5 w-3.5 fill-estrella" aria-hidden />
                   ))}
                 </div>
                 <p className="text-[0.95rem] font-bold text-white">

@@ -23,9 +23,9 @@ export default function TrustBridge() {
           {/* Rating + prueba social */}
           <div className="flex flex-none items-center justify-center gap-5 rounded-xl bg-white/[0.03] px-5 py-4 ring-1 ring-white/[0.07]">
             <div className="text-center">
-              <div className="flex items-center justify-center gap-0.5 text-crema-200">
+              <div className="flex items-center justify-center gap-0.5 text-estrella">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-3.5 w-3.5 fill-crema-200" aria-hidden />
+                  <Star key={i} className="h-3.5 w-3.5 fill-estrella" aria-hidden />
                 ))}
               </div>
               <p className="mt-0.5 text-[0.72rem] font-bold text-crema-50">4.9/5</p>
