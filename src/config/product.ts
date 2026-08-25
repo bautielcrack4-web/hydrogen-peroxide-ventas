@@ -83,7 +83,7 @@ export const planes = [
       "Garden: how to wake up seeds, protect roots and stop plant fungus",
       "300+ uses organized by area: kitchen, bathroom, laundry, floors and patio",
     ],
-    cta: "I want this guide",
+    cta: "Get this guide",
   },
   {
     id: "reparador",
@@ -102,7 +102,7 @@ export const planes = [
       "Car: engine, upholstery and cloudy headlights — tricks the shop charges a fortune for",
       "Pests: how to cut them off at the source without poison, room by room",
     ],
-    cta: "I want this guide",
+    cta: "Get this guide",
   },
   {
     id: "combo",
@@ -137,6 +137,6 @@ export const planes = [
       { titulo: "Safety Guide: what to NEVER mix and how to store it right", valor: "$15" },
       { titulo: "Lifetime updates (new tricks, free)", valor: "$20" },
     ],
-    cta: "I want the complete method",
+    cta: "Get the complete method",
   },
 ] as const;

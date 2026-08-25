@@ -10,9 +10,9 @@ const enlaces = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0c0c0f] pb-24 pt-14 text-crema-200/70 sm:pb-14">
+    <footer className="border-t border-white/[0.06] bg-[#0b0c0e] pb-28 pt-16 text-crema-200 sm:pb-16">
       <div className="contenedor text-center">
-        <Ornamento color="text-oro" />
+        <Ornamento color="text-crema-200/40" />
         <p className="mt-6 font-serif text-lg font-bold uppercase tracking-[0.22em] text-crema-100">
           {product.marca}
         </p>
@@ -23,14 +23,14 @@ export default function Footer() {
             <Link
               key={e.href}
               href={e.href}
-              className="underline decoration-crema-200/30 underline-offset-4 transition hover:text-crema-100 hover:decoration-oro"
+              className="underline decoration-crema-200/30 underline-offset-4 transition hover:text-crema-100 hover:decoration-crema-200"
             >
               {e.texto}
             </Link>
           ))}
           <a
             href={`mailto:${product.soporteEmail}`}
-            className="underline decoration-crema-200/30 underline-offset-4 transition hover:text-crema-100 hover:decoration-oro"
+            className="underline decoration-crema-200/30 underline-offset-4 transition hover:text-crema-100 hover:decoration-crema-200"
           >
             {product.soporteEmail}
           </a>

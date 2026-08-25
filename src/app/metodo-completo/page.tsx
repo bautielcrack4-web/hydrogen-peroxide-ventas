@@ -3,17 +3,13 @@ import { ShieldCheck, Plus } from "lucide-react";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import ComboTopBar from "@/components/combo/ComboTopBar";
 import ComboHero from "@/components/combo/ComboHero";
+import ProductoReal from "@/components/combo/ProductoReal";
 import ComboPricing from "@/components/landing/ComboPricing";
 import Comparativa from "@/components/combo/Comparativa";
-import SocialProofToast from "@/components/combo/SocialProofToast";
 import StickyCompra from "@/components/combo/StickyCompra";
-import Onboarding from "@/components/combo/Onboarding";
-import SaludoPersonal from "@/components/combo/SaludoPersonal";
 import ReordenSegunObjetivo from "@/components/combo/ReordenSegunObjetivo";
-import CierrePersonal from "@/components/combo/CierrePersonal";
 import FlipbookBotox from "@/components/combo/FlipbookBotox";
 import TrustBridge from "@/components/combo/TrustBridge";
-import ComboCountdown from "@/components/combo/ComboCountdown";
 import {
   ComboCapitulos,
   ComboReviews,
@@ -37,10 +33,10 @@ const ORDENES: Record<string, string[]> = {
   // Flujo de conversión: desear (qué hay adentro + recetario) → anclar
   // (comparativa) → precio → reforzar valor → prueba social → enemigo →
   // urgencia → autoridad. La oferta ya está en el hero para el comprador listo.
-  default: ["capitulos", "flip", "compara", "pricing", "value", "reviews", "cierre", "count", "autor"],
-  hogar: ["flip", "capitulos", "compara", "pricing", "value", "reviews", "cierre", "count", "autor"],
-  reparador: ["capitulos", "compara", "pricing", "value", "reviews", "cierre", "count", "autor", "flip"],
-  ambos: ["compara", "value", "pricing", "flip", "capitulos", "reviews", "cierre", "count", "autor"],
+  default: ["capitulos", "flip", "compara", "pricing", "value", "reviews", "cierre", "autor"],
+  hogar: ["flip", "capitulos", "compara", "pricing", "value", "reviews", "cierre", "autor"],
+  reparador: ["capitulos", "compara", "pricing", "value", "reviews", "cierre", "autor", "flip"],
+  ambos: ["compara", "value", "pricing", "flip", "capitulos", "reviews", "cierre", "autor"],
 };
 
 export const metadata: Metadata = {
@@ -53,13 +49,12 @@ export const metadata: Metadata = {
 export default function MetodoCompleto() {
   return (
     <>
-      <Onboarding />
       <ScrollProgress />
       <ComboTopBar />
-      <SaludoPersonal />
       <main className="lienzo">
         <ComboHero />
         <TrustBridge />
+        <ProductoReal />
 
         {/* Secuencia central: se reordena según el objetivo del onboarding. */}
         <ReordenSegunObjetivo ordenes={ORDENES}>
@@ -67,24 +62,24 @@ export default function MetodoCompleto() {
           <Comparativa key="compara" />
 
           {/* Cierre conspirativo (estilo "your utility company is counting on you…") */}
-          <section key="cierre" className="py-16 text-crema-50 sm:py-20">
+          <section key="cierre" className="py-24 text-crema-50 sm:py-32">
             <div className="contenedor">
               <Reveal>
                 <div className="mx-auto max-w-2xl text-center">
-                  <h2 className="titulo-serif text-[1.9rem] leading-tight text-crema-50 sm:text-[2.4rem]">
+                  <h2 className="display-seccion">
                     {comboCierre.titulo}
                   </h2>
                   {comboCierre.parrafos.map((p) => (
                     <p
                       key={p}
-                      className="mx-auto mt-5 max-w-prosa text-[1.08rem] leading-relaxed text-crema-200/85"
+                      className="mx-auto mt-6 max-w-prosa text-[1.0625rem] leading-[1.7] text-crema-200"
                     >
                       {p}
                     </p>
                   ))}
                   <a
                     href={checkoutCombo}
-                    className="hotmart-fb boton-oro mt-8 inline-flex items-center justify-center gap-2.5 rounded-full px-8 py-4 text-lg font-bold text-bosque shadow-libro transition-all duration-200 hover:-translate-y-0.5 active:scale-[.98]"
+                    className="hotmart-fb boton-oro mt-10 inline-flex items-center justify-center rounded-[10px] px-8 py-4 text-[1.0625rem] font-semibold tracking-[-0.01em]"
                   >
                     {comboCierre.cta} — ${precioCombo}
                   </a>
@@ -100,9 +95,6 @@ export default function MetodoCompleto() {
           <FlipbookBotox key="flip" />
 
 
-          {/* Countdown grande */}
-          <ComboCountdown key="count" />
-
           {/* Testimonios */}
           <ComboReviews key="reviews" />
 
@@ -113,19 +105,16 @@ export default function MetodoCompleto() {
           <ValueStackRegalado key="value" />
         </ReordenSegunObjetivo>
 
-        {/* Cierre personalizado con su nombre (solo si dejó su nombre) */}
-        <CierrePersonal />
-
         {/* Garantía */}
-        <section className="py-16 text-crema-50">
+        <section className="py-24 text-crema-50 sm:py-28">
           <div className="contenedor">
             <Reveal>
-              <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 rounded-2xl border border-oro/25 bg-crema-50/[0.05] p-8 text-center">
-                <ShieldCheck className="h-12 w-12 text-oro-claro" aria-hidden />
-                <h2 className="titulo-serif text-[1.7rem] text-crema-50">
+              <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-10 text-center">
+                <ShieldCheck className="h-10 w-10 text-crema-200" aria-hidden />
+                <h2 className="titulo-serif text-[1.6rem]">
                   {comboGarantia.titulo}
                 </h2>
-                <p className="max-w-prosa text-[1.05rem] leading-relaxed text-crema-200/85">
+                <p className="max-w-prosa text-[1.0625rem] leading-[1.7] text-crema-200">
                   {comboGarantia.texto}
                 </p>
               </div>
@@ -134,24 +123,24 @@ export default function MetodoCompleto() {
         </section>
 
         {/* FAQ */}
-        <section id="preguntas" className="py-16 text-crema-50">
+        <section id="preguntas" className="py-24 text-crema-50 sm:py-28">
           <div className="contenedor">
             <Reveal>
-              <h2 className="titulo-serif text-center text-[2rem] text-crema-50">
+              <h2 className="display-seccion text-center">
                 Frequently asked questions
               </h2>
             </Reveal>
-            <div className="mx-auto mt-8 max-w-2xl divide-y divide-crema-50/12">
+            <div className="mx-auto mt-12 max-w-2xl divide-y divide-white/[0.07]">
               {comboFaq.map((f) => (
-                <details key={f.q} className="group py-4">
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[1.05rem] font-semibold text-crema-50">
+                <details key={f.q} className="group py-5">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[1.0625rem] font-medium text-crema-50">
                     {f.q}
                     <Plus
-                      className="mt-1 h-5 w-5 flex-none text-oro-claro transition-transform group-open:rotate-45"
+                      className="mt-1 h-5 w-5 flex-none text-crema-200 transition-transform group-open:rotate-45"
                       aria-hidden
                     />
                   </summary>
-                  <p className="mt-3 max-w-prosa text-[0.98rem] leading-relaxed text-crema-200/80">
+                  <p className="mt-4 max-w-prosa text-[1rem] leading-[1.7] text-crema-200">
                     {f.a}
                   </p>
                 </details>
@@ -163,14 +152,13 @@ export default function MetodoCompleto() {
         {/* Disclaimer legal */}
         <section className="pb-14 pt-4 text-crema-50">
           <div className="contenedor">
-            <p className="mx-auto max-w-3xl text-center text-[0.8rem] italic leading-relaxed text-crema-200/50">
+            <p className="mx-auto max-w-3xl text-center text-[0.8rem] leading-relaxed text-crema-200/55">
               {comboLegal}
             </p>
           </div>
         </section>
       </main>
       <Footer />
-      <SocialProofToast />
       <StickyCompra />
     </>
   );

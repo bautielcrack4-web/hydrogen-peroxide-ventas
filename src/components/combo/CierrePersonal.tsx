@@ -49,7 +49,7 @@ export default function CierrePersonal() {
             href={checkoutCombo}
             className="boton-oro mt-7 inline-flex items-center justify-center gap-2.5 rounded-full px-8 py-4 text-lg font-bold text-bosque shadow-libro transition-all duration-200 hover:-translate-y-0.5 active:scale-[.98]"
           >
-            <CtaLabel base="I want the complete method" /> — ${combo.precio}
+            <CtaLabel base="Get the complete method" /> — ${combo.precio}
             <ArrowRight className="h-5 w-5" aria-hidden />
           </CheckoutLink>
         </div>

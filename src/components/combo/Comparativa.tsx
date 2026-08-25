@@ -1,4 +1,4 @@
-import { Check, Lock, Minus, ArrowRight, Crown } from "lucide-react";
+import { Check, Lock, Minus, Crown } from "lucide-react";
 import Anim from "@/components/ui/Anim";
 import CheckoutLink from "@/components/ui/CheckoutLink";
 import { checkoutHogar, checkoutReparador, checkoutCombo } from "@/config/product";
@@ -32,7 +32,7 @@ function Celda({
   delay: number;
 }) {
   return (
-    <td className={`px-1 py-3.5 text-center sm:px-4 ${destacado ? "bg-oro-claro/20" : ""}`}>
+    <td className={`px-1 py-3.5 text-center sm:px-4 ${destacado ? "bg-tinta/[0.045]" : ""}`}>
       <Anim variant="scale" delay={delay} duration={450} className="inline-flex">
         {ok ? (
           <span
@@ -54,17 +54,17 @@ function Celda({
 
 export default function Comparativa() {
   return (
-    <section className="py-16 text-crema-50 sm:py-24">
+    <section className="py-24 text-crema-50 sm:py-32">
       <div className="contenedor">
         <Anim>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="etiqueta !text-oro-claro">Honest comparison</p>
-            <h2 className="titulo-serif mt-3 text-[1.9rem] text-crema-50 sm:text-[2.5rem]">
+            <p className="etiqueta">Honest comparison</p>
+            <h2 className="display-seccion mt-4">
               See the difference at a glance.
             </h2>
-            <p className="mt-3 text-[1rem] text-crema-200/75 sm:text-[1.1rem]">
+            <p className="mx-auto mt-5 max-w-prosa text-[1.0625rem] leading-relaxed text-crema-200">
               For the same price as a single guide, you get{" "}
-              <strong className="text-oro-claro">both — plus everything exclusive</strong>.
+              <strong className="text-crema-50">both — plus everything exclusive</strong>.
             </p>
           </div>
         </Anim>
@@ -72,7 +72,7 @@ export default function Comparativa() {
         <Anim delay={80}>
           {/* pt-6: deja aire arriba para que el badge "Más elegido" (que sale
               del borde superior del th) no lo recorte el overflow del scroll. */}
-          <div className="mx-auto mt-12 max-w-3xl overflow-x-auto rounded-2xl border border-arena bg-white pt-6 shadow-tarjeta">
+          <div className="mx-auto mt-14 max-w-3xl overflow-x-auto rounded-2xl bg-white pt-6 text-tinta shadow-libro">
             <table className="w-full border-collapse">
               <thead>
                 <tr>
@@ -81,11 +81,11 @@ export default function Comparativa() {
                     <th
                       key={c.n}
                       className={`relative px-1 py-4 text-center align-bottom sm:px-4 ${
-                        c.destacado ? "bg-oro-claro/20" : ""
+                        c.destacado ? "bg-tinta/[0.045]" : ""
                       }`}
                     >
                       {c.destacado && (
-                        <span className="absolute left-1/2 top-0 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1 whitespace-nowrap rounded-full bg-oro px-2.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-wide text-bosque shadow-tarjeta">
+                        <span className="absolute left-1/2 top-0 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1 whitespace-nowrap rounded-full bg-oro px-2.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-white">
                           <Crown className="h-3 w-3" aria-hidden /> Most chosen
                         </span>
                       )}
@@ -116,7 +116,7 @@ export default function Comparativa() {
                     <td className="px-2.5 py-3.5 text-left text-[0.8rem] leading-snug text-tinta/85 sm:px-5 sm:text-[0.95rem]">
                       {f.t}
                       {f.excl && (
-                        <span className="ml-1.5 hidden rounded bg-oro-claro/30 px-1.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-wide text-oro sm:inline-block">
+                        <span className="ml-1.5 hidden rounded bg-oro/10 px-1.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wide text-oro sm:inline-block">
                           Exclusive
                         </span>
                       )}
@@ -137,7 +137,7 @@ export default function Comparativa() {
                   <td className="px-1 py-4 text-center sm:px-4">
                     <CheckoutLink
                       href={checkoutHogar}
-                      className="inline-block rounded-full border border-teal/40 px-2.5 py-1.5 text-[0.72rem] font-bold text-teal transition-colors hover:bg-teal hover:text-crema-50"
+                      className="inline-block rounded-[7px] border border-tinta/25 px-2.5 py-1.5 text-[0.72rem] font-semibold text-tinta transition-colors hover:bg-tinta hover:text-crema-50"
                     >
                       $27
                     </CheckoutLink>
@@ -145,15 +145,15 @@ export default function Comparativa() {
                   <td className="px-1 py-4 text-center sm:px-4">
                     <CheckoutLink
                       href={checkoutReparador}
-                      className="inline-block rounded-full border border-teal/40 px-2.5 py-1.5 text-[0.72rem] font-bold text-teal transition-colors hover:bg-teal hover:text-crema-50"
+                      className="inline-block rounded-[7px] border border-tinta/25 px-2.5 py-1.5 text-[0.72rem] font-semibold text-tinta transition-colors hover:bg-tinta hover:text-crema-50"
                     >
                       $29
                     </CheckoutLink>
                   </td>
-                  <td className="bg-oro-claro/20 px-1 py-4 text-center sm:px-4">
+                  <td className="bg-tinta/[0.045] px-1 py-4 text-center sm:px-4">
                     <CheckoutLink
                       href={checkoutCombo}
-                      className="boton-oro inline-block rounded-full px-3 py-2 text-[0.75rem] font-bold text-bosque shadow-tarjeta"
+                      className="boton-oro inline-block rounded-[7px] px-3 py-2 text-[0.75rem] font-semibold"
                     >
                       $47
                     </CheckoutLink>
@@ -165,13 +165,12 @@ export default function Comparativa() {
         </Anim>
 
         <Anim delay={120}>
-          <div className="mt-9 text-center">
+          <div className="mt-14 text-center">
             <CheckoutLink
               href={checkoutCombo}
-              className="boton-oro barrido group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-full px-9 py-4 text-[1.05rem] font-bold text-bosque shadow-libro transition-all duration-200 hover:-translate-y-0.5 active:scale-[.98]"
+              className="boton-oro inline-flex items-center justify-center rounded-[10px] px-9 py-4 text-[1.0625rem] font-semibold tracking-[-0.01em]"
             >
               Get the complete method · $47
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
             </CheckoutLink>
           </div>
         </Anim>

@@ -1,10 +1,8 @@
 "use client";
 
-import { ArrowRight, Check, Star, Lock, Flame } from "lucide-react";
+import { Check, Star, Lock } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import BookCover3D from "@/components/combo/BookCover3D";
-import Sparkles from "@/components/combo/Sparkles";
-import Chispas from "@/components/ui/Chispas";
 import CheckoutLink from "@/components/ui/CheckoutLink";
 import { usePerfil } from "@/components/ui/usePerfil";
 import { planes, comboConfigurado } from "@/config/product";
@@ -25,7 +23,7 @@ function textosEleccion(perfil: { nombre?: string; obj?: string } | null) {
       titulo:
         "Start with “Hydrogen Peroxide at Home”… or grab everything for almost the same price.",
       bajada:
-        "With the home guide you'll already get your bathroom, laundry and garden spotless. But the Complete Method adds “The Repairman's Secret,” The Master Recipe Book and every bonus — for less than the two guides bought separately. 8 out of 10 people take the full method.",
+        "With the home guide you'll already get your bathroom, laundry and garden spotless. But the Complete Method adds “The Repairman's Secret,” The Master Recipe Book and every bonus — for less than the two guides bought separately.",
     };
 
   if (perfil.obj === "reparador")
@@ -43,7 +41,7 @@ function textosEleccion(perfil: { nombre?: string; obj?: string } | null) {
     titulo:
       "Home, garden and repairs, all together: the Complete Method is exactly what you were looking for.",
     bajada:
-      "Buying the two guides separately costs more. Together — plus The Master Recipe Book with the exact amounts and every bonus — they come out to less than the two on their own. It's what 8 out of 10 people choose.",
+      "Buying the two guides separately costs more. Together — plus The Master Recipe Book with the exact amounts and every bonus — they come out to less than the two on their own.",
   };
 }
 
@@ -72,19 +70,18 @@ export default function ComboPricing({ id = "planes" }: { id?: string }) {
   return (
     <section
       id={id}
-      className="relative overflow-hidden py-16 text-crema-50 sm:py-24"
+      className="relative py-24 text-crema-50 sm:py-32"
     >
-      <Sparkles />
       <div className="contenedor relative">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-[0.78rem] font-bold uppercase tracking-[0.2em] text-oro-claro">
+            <p className="etiqueta">
               {txt.etiqueta}
             </p>
-            <h2 className="titulo-serif mt-3 text-[2rem] text-crema-50 sm:text-[2.6rem]">
+            <h2 className="display-seccion mt-4">
               {txt.titulo}
             </h2>
-            <p className="mt-4 text-[1.05rem] leading-relaxed text-crema-200/80">
+            <p className="mx-auto mt-5 max-w-prosa text-[1.0625rem] leading-relaxed text-crema-200">
               {txt.bajada}
             </p>
           </div>
@@ -138,11 +135,10 @@ function PlanCard({
         destacado
           ? "bg-crema-50 text-tinta shadow-libro lg:pb-9"
           : recomendado
-            ? "bg-[#23242B] text-crema-50 ring-2 ring-oro-claro shadow-libro"
-            : "bg-[#23242B] text-crema-50 ring-1 ring-white/10 shadow-libro"
+            ? "bg-[#141519] text-crema-50 ring-1 ring-white/20"
+            : "bg-[#141519] text-crema-50 ring-1 ring-white/[0.07]"
       }`}
     >
-      {destacado && <Chispas />}
       {recomendado && !destacado && (
         <span className="absolute -top-3 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-oro px-3 py-1 text-[0.64rem] font-bold uppercase tracking-wide text-bosque shadow-tarjeta">
           ★ For your goal
@@ -211,7 +207,7 @@ function PlanCard({
 
       {/* Gancho estrella: la 3ª guía exclusiva bajo llave */}
       {"guiaExclusiva" in plan && plan.guiaExclusiva && (
-        <div className="mt-5 flex items-start gap-3 rounded-xl border border-oro/40 bg-oro-claro/15 p-4">
+        <div className="mt-5 flex items-start gap-3 rounded-xl border border-oro/30 bg-oro/[0.06] p-4">
           <Lock className="mt-0.5 h-5 w-5 flex-none text-oro" aria-hidden />
           <div>
             <p className="text-[0.95rem] font-bold text-tinta">
@@ -294,42 +290,19 @@ function PlanCard({
         </ul>
       )}
 
-      {/* Prueba social + escasez solo en el combo */}
-      {destacado && (
-        <div className="mt-5 space-y-3">
-          <div>
-            <div className="mb-1 flex items-center justify-between text-[0.74rem] font-bold text-tinta/70">
-              <span>8 out of 10 choose the complete method</span>
-              <span className="text-teal">80%</span>
-            </div>
-            <div className="h-2 w-full overflow-hidden rounded-full bg-tinta/[0.08]">
-              <div className="h-full w-[80%] rounded-full bg-[linear-gradient(90deg,#C41306,#FF3B2E)]" />
-            </div>
-          </div>
-          <div className="rounded-lg bg-alerta/10 px-4 py-2.5 text-center text-[0.82rem] font-semibold text-alerta">
-            <Flame className="mr-1.5 inline h-4 w-4" aria-hidden />
-            Only {comboEleccion.copiasRestantes} left at the launch price
-          </div>
-        </div>
-      )}
-
       {/* CTA */}
       <div className="mt-auto pt-6">
         <CheckoutLink
           href={plan.checkout}
-          className={`barrido group relative inline-flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-full px-6 py-4 text-center text-[1.05rem] font-bold leading-tight transition-all duration-200 active:scale-[.98] ${
+          className={`inline-flex w-full items-center justify-center rounded-[10px] px-6 py-4 text-center text-[1.0125rem] font-semibold leading-tight tracking-[-0.01em] transition-colors duration-200 ${
             destacado
-              ? "boton-oro text-bosque shadow-libro hover:-translate-y-0.5"
-              : "bg-teal text-crema-50 shadow-suave hover:bg-teal-dark hover:-translate-y-0.5"
+              ? "boton-oro"
+              : "border border-white/15 bg-white/[0.04] text-crema-50 hover:bg-white/[0.08]"
           }`}
         >
           <span>
             {plan.cta} · ${plan.precio}
           </span>
-          <ArrowRight
-            className="h-5 w-5 flex-none transition-transform group-hover:translate-x-1"
-            aria-hidden
-          />
         </CheckoutLink>
         <p
           className={`mt-3 text-center text-[0.72rem] font-semibold uppercase tracking-[0.14em] ${
@@ -342,9 +315,5 @@ function PlanCard({
     </div>
   );
 
-  return destacado ? (
-    <div className="card-legendaria h-full lg:-mt-6">{inner}</div>
-  ) : (
-    inner
-  );
+  return destacado ? <div className="h-full lg:-mt-6">{inner}</div> : inner;
 }

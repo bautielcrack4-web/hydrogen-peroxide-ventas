@@ -55,7 +55,7 @@ export default function FlipbookBotox() {
   return (
     <>
       {/* Sección disparadora — showcase de páginas en abanico (momento WOW) */}
-      <section className="grade-joya relative overflow-hidden py-16 text-crema-50 sm:py-24">
+      <section className="relative overflow-hidden py-24 text-crema-50 sm:py-32">
         {/* halo cálido detrás del abanico */}
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div
@@ -68,16 +68,16 @@ export default function FlipbookBotox() {
         </div>
 
         <div className="contenedor relative z-10 text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-oro/15 px-3.5 py-1 text-[0.72rem] font-black uppercase tracking-[0.16em] text-oro-claro ring-1 ring-oro-claro/40">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] px-3.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-crema-200 ring-1 ring-white/12">
             <Gift className="h-3.5 w-3.5" aria-hidden />
             Combo exclusive
           </span>
-          <h2 className="titulo-serif texto-oro-vivo mx-auto mt-3 max-w-2xl text-[1.9rem] leading-[1.1] sm:text-[2.6rem]">
+          <h2 className="display-seccion mx-auto mt-4 max-w-2xl">
             The book that makes every trick actually work.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[1.02rem] leading-relaxed text-crema-200/85 sm:text-[1.12rem]">
             The Master Recipe Book gives you the{" "}
-            <strong className="text-oro-claro">exact amount, ratio and time</strong>{" "}
+            <strong className="text-crema-50">exact amount, ratio and time</strong>{" "}
             for every single use — the difference between “it kind of worked” and{" "}
             <em>“wow.”</em> See it for yourself:
           </p>
@@ -103,7 +103,7 @@ export default function FlipbookBotox() {
                   alt="Master Recipe Book page"
                   className={`absolute inset-0 h-full w-full rounded-xl object-cover ring-1 transition-transform duration-500 ${
                     pg.center
-                      ? "shadow-[0_40px_80px_-24px_rgba(0,0,0,.8)] ring-oro-claro/60 group-hover:-translate-y-1"
+                      ? "shadow-libro ring-white/25 group-hover:-translate-y-1"
                       : "shadow-[0_30px_60px_-24px_rgba(0,0,0,.75)] ring-oro/25"
                   }`}
                   style={{
@@ -113,16 +113,16 @@ export default function FlipbookBotox() {
                 />
               ))}
               {/* badges flotantes */}
-              <span className="animate-latido absolute -left-9 -top-4 z-40 rotate-[-7deg] rounded-full bg-oro px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-wide text-bosque shadow-tarjeta sm:px-3.5 sm:text-[0.72rem]">
+              <span className="absolute -left-6 -top-3 z-40 rounded-md bg-oro px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-white shadow-tarjeta sm:px-3.5 sm:text-[0.68rem]">
                 150 exact recipes
               </span>
-              <span className="absolute -bottom-3 -right-9 z-40 rotate-[6deg] rounded-full bg-teal-abismo/90 px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-wide text-oro-claro ring-1 ring-oro-claro/50 backdrop-blur sm:px-3.5 sm:text-[0.72rem]">
+              <span className="absolute -bottom-3 -right-6 z-40 rounded-md bg-teal-abismo/90 px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-crema-200 ring-1 ring-white/15 backdrop-blur sm:px-3.5 sm:text-[0.68rem]">
                 the “never-mix” chart
               </span>
             </span>
             {/* hint de abrir (aparece en hover / siempre visible en móvil) */}
             <span className="pointer-events-none absolute bottom-0 left-1/2 z-50 -translate-x-1/2 inline-flex items-center gap-2 rounded-full bg-crema-50/10 px-4 py-2 text-[0.82rem] font-semibold text-crema-50 ring-1 ring-crema-50/20 backdrop-blur transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100">
-              <BookOpen className="h-4 w-4 text-oro-claro" aria-hidden />
+              <BookOpen className="h-4 w-4 text-crema-200" aria-hidden />
               Tap to flip through it
             </span>
           </button>
@@ -137,9 +137,9 @@ export default function FlipbookBotox() {
             ].map(([n, l]) => (
               <span
                 key={l}
-                className="neo inline-flex items-baseline gap-1.5 rounded-full px-4 py-2 text-crema-100"
+                className="inline-flex items-baseline gap-1.5 rounded-full border border-white/[0.09] bg-white/[0.03] px-4 py-2 text-crema-200"
               >
-                <b className="font-serif text-lg text-oro-claro">{n}</b>
+                <b className="font-serif text-lg tracking-display text-crema-50">{n}</b>
                 <span className="text-[0.8rem] text-crema-200/80">{l}</span>
               </span>
             ))}
@@ -147,7 +147,7 @@ export default function FlipbookBotox() {
 
           <button
             onClick={abrir}
-            className="boton-oro mt-8 inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[1.05rem] font-bold text-bosque shadow-libro transition-all duration-200 hover:-translate-y-0.5 active:scale-[.98]"
+            className="boton-oro mt-10 inline-flex items-center gap-2.5 rounded-[10px] px-8 py-4 text-[1.0625rem] font-semibold tracking-[-0.01em]"
           >
             <BookOpen className="h-5 w-5" aria-hidden />
             Flip through it — free
@@ -166,7 +166,7 @@ export default function FlipbookBotox() {
         >
           {/* barra superior */}
           <div className="flex flex-none items-center justify-between px-4 py-3 text-crema-50">
-            <span className="text-[0.8rem] font-semibold text-oro-claro">
+            <span className="text-[0.8rem] font-medium text-crema-200">
               The Master Recipe Book · preview
             </span>
             <span className="text-[0.8rem] tabular-nums text-crema-200/70">
@@ -225,7 +225,7 @@ export default function FlipbookBotox() {
                       style={style}
                     >
                       {isCTA ? (
-                        <div className="flex h-full items-center justify-center rounded-lg bg-crema-50 p-6 shadow-libro">
+                        <div className="flex h-full items-center justify-center rounded-lg bg-crema-50 p-6 text-tinta shadow-libro">
                           <div className="text-center text-tinta">
                             <div className="mb-2 flex justify-center gap-1 text-oro">
                               {[...Array(5)].map((_, s) => (
@@ -244,7 +244,7 @@ export default function FlipbookBotox() {
                             </p>
                             <CheckoutLink
                               href={checkoutCombo}
-                              className="boton-oro mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-[0.98rem] font-bold text-bosque shadow-libro"
+                              className="boton-oro mt-5 inline-flex w-full items-center justify-center gap-2 rounded-[9px] px-5 py-3.5 text-[0.98rem] font-semibold"
                             >
                               Unlock it with the combo · $47
                               <ArrowRight className="h-4 w-4" aria-hidden />
@@ -266,7 +266,7 @@ export default function FlipbookBotox() {
                             <>
                               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[46%] bg-gradient-to-t from-teal-abismo via-teal-abismo/85 to-transparent">
                                 <div className="absolute inset-x-0 bottom-5 flex flex-col items-center gap-1.5 text-center text-crema-50">
-                                  <Lock className="h-5 w-5 text-oro-claro" aria-hidden />
+                                  <Lock className="h-5 w-5 text-crema-200" aria-hidden />
                                   <span className="text-[0.82rem] font-semibold">
                                     The full step-by-step is in the guide
                                   </span>
@@ -299,7 +299,7 @@ export default function FlipbookBotox() {
               <button
                 onClick={next}
                 aria-label="Next"
-                className="animate-latido absolute right-2 top-1/2 z-[110] -translate-y-1/2 rounded-full bg-oro p-2.5 text-bosque shadow-tarjeta transition hover:bg-oro-claro"
+                className="absolute right-2 top-1/2 z-[110] -translate-y-1/2 rounded-full bg-oro p-2.5 text-white shadow-tarjeta transition hover:brightness-110"
               >
                 <ChevronRight className="h-6 w-6" aria-hidden />
               </button>
@@ -317,7 +317,7 @@ export default function FlipbookBotox() {
                 onClick={() => setI(k)}
                 aria-label={`Go to ${k + 1}`}
                 className={`h-2 rounded-full transition-all ${
-                  k === i ? "w-6 bg-oro-claro" : "w-2 bg-crema-50/30 hover:bg-crema-50/50"
+                  k === i ? "w-6 bg-crema-50" : "w-2 bg-crema-50/25 hover:bg-crema-50/45"
                 }`}
               />
             ))}

@@ -5,7 +5,7 @@ import { usePerfil } from "@/components/ui/usePerfil";
 /**
  * Titular del hero personalizado según el objetivo del onboarding.
  * Sin perfil (o en el server) usa el titular por defecto que le pasan.
- * El acento va en dorado cursivo, como el diseño original.
+ * El acento NO cambia de color: se marca con una línea roja fina debajo.
  */
 type Parte = { antes: string; acento: string; despues: string };
 
@@ -33,7 +33,7 @@ export default function TitularHero({ base }: { base: Parte }) {
   return (
     <>
       {t.antes}
-      <em className="italic text-oro-claro">{t.acento}</em>
+      <span className="acento-subrayado">{t.acento}</span>
       {t.despues}
     </>
   );

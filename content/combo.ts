@@ -14,7 +14,7 @@ export const comboHero = {
     "The same hydrogen peroxide tricks that blew up on YouTube, now organized into one method: over 300 uses for cleaning your home and garden, plus The Repairman's Secret for appliances, HVAC, your car and your pipes — with the exact amounts. Buy it once and it's yours forever.",
   anclaValor:
     "The whole method for less than a month's worth of cleaning supplies.",
-  cta: "I want the complete method",
+  cta: "Get the complete method",
   stats: [
     { valor: "300+", etiqueta: "Tricks & uses" },
     { valor: "$1", etiqueta: "The bottle costs" },
@@ -26,9 +26,7 @@ export const comboHero = {
 /** Fixed top bar: permanent reminder of the combo + urgency. */
 export const comboBarra = {
   marca: "The Complete Method",
-  aviso: "Launch price ends in",
-  cta: "Combo · $47",
-  leyendoAhora: 84,
+  cta: "Get the method · $47",
 };
 
 export const comboEleccion = {
@@ -36,7 +34,6 @@ export const comboEleccion = {
   titulo: "Each guide stands on its own. The combo is where the savings get serious.",
   bajada:
     "Grab the one you need today… or the complete method: both guides + The Master Recipe Book and every bonus, for less than the two on their own.",
-  copiasRestantes: 19,
 };
 
 /** Floating social-proof notifications (rotate on the client). */
@@ -58,7 +55,7 @@ export const comboCierre = {
     "Hydrogen peroxide is nothing new. It's dirt cheap, you can grab it at any drugstore, and it does the job of dozens of pricey products — it's just that nobody stands to profit from you knowing that.",
     "The only thing missing was having it all in one place, organized room by room, with the exact amounts and what NOT to mix. That's The Complete Hydrogen Peroxide Method.",
   ],
-  cta: "I want the complete method",
+  cta: "Get the complete method",
 };
 
 export const comboGarantia = {
@@ -115,7 +112,7 @@ export const comboCapitulos = {
     "Car: engine, upholstery and cloudy headlights like new",
     "Pipes and pests without calling the tech",
   ],
-  cta: "Unlock the complete method",
+  cta: "Get the complete method",
 };
 
 /** Large countdown in the body. */

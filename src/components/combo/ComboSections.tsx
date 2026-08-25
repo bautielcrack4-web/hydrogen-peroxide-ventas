@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Lock, Check, Star, ShieldCheck, Zap, FileText, Infinity as InfinityIcon } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import Sparkles from "@/components/combo/Sparkles";
 import ReviewsCarousel from "@/components/combo/ReviewsCarousel";
 import { checkoutCombo, planes } from "@/config/product";
 import {
@@ -21,7 +20,7 @@ function CtaOro({ children }: { children: React.ReactNode }) {
   return (
     <a
       href={checkoutCombo}
-      className="hotmart-fb boton-oro group inline-flex items-center justify-center gap-2.5 rounded-full px-8 py-4 text-lg font-bold text-bosque shadow-libro transition-all duration-200 hover:-translate-y-0.5 active:scale-[.98]"
+      className="hotmart-fb boton-oro inline-flex items-center justify-center rounded-[10px] px-8 py-4 text-[1.0625rem] font-semibold tracking-[-0.01em]"
     >
       {children}
     </a>
@@ -37,7 +36,7 @@ export function PagoBadges() {
         const Icono = PAGO_ICONS[i] ?? ShieldCheck;
         return (
           <li key={t} className="flex flex-col items-center gap-1.5 text-center">
-            <Icono className="h-5 w-5 text-oro-claro" aria-hidden />
+            <Icono className="h-5 w-5 text-crema-200" aria-hidden />
             <span className="text-[0.78rem] font-semibold leading-tight text-crema-200/75">
               {t}
             </span>
@@ -51,53 +50,52 @@ export function PagoBadges() {
 /* ---------- Mirá adentro: capítulos ---------- */
 export function ComboCapitulos() {
   return (
-    <section className="relative overflow-hidden py-16 text-crema-50 sm:py-20">
-      <Sparkles />
+    <section className="relative py-24 text-crema-50 sm:py-32">
       <div className="contenedor relative">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-[0.78rem] font-bold uppercase tracking-[0.2em] text-oro-claro">
+            <p className="etiqueta">
               Look inside
             </p>
-            <h2 className="titulo-serif mt-3 text-[1.9rem] text-crema-50 sm:text-[2.4rem]">
+            <h2 className="display-seccion mt-4">
               {comboCapitulos.titulo}
             </h2>
-            <p className="mt-3 text-[1.02rem] text-crema-200/80">
+            <p className="mx-auto mt-5 max-w-prosa text-[1.0625rem] leading-relaxed text-crema-200">
               {comboCapitulos.bajada}
             </p>
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <ol className="mx-auto mt-8 max-w-2xl space-y-2.5">
+          <ol className="mx-auto mt-12 max-w-2xl space-y-2">
             {comboCapitulos.items.map((c, i) => (
               <li
                 key={c}
-                className="flex items-start gap-3 rounded-xl bg-crema-50/[0.05] px-4 py-3 ring-1 ring-crema-50/10"
+                className="flex items-start gap-4 rounded-xl bg-white/[0.03] px-5 py-4 ring-1 ring-white/[0.07]"
               >
                 <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-teal text-[0.72rem] font-bold text-crema-50">
                   {i + 1}
                 </span>
                 <span className="text-[0.98rem] text-crema-100">{c}</span>
-                <Check className="ml-auto mt-1 h-4 w-4 flex-none text-oro-claro" aria-hidden />
+                <Check className="ml-auto mt-1 h-4 w-4 flex-none text-crema-200" aria-hidden />
               </li>
             ))}
             {comboCapitulos.bloqueados.map((c) => (
               <li
                 key={c}
-                className="flex items-start gap-3 rounded-xl border border-dashed border-oro/30 bg-oro-claro/5 px-4 py-3"
+                className="flex items-start gap-4 rounded-xl border border-dashed border-white/12 px-5 py-4"
               >
-                <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-oro/20">
+                <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-white/[0.07]">
                   <Lock className="h-3.5 w-3.5 text-oro-claro" aria-hidden />
                 </span>
                 <span className="text-[0.98rem] italic text-crema-200/70">{c}</span>
-                <span className="ml-auto text-[0.68rem] font-bold uppercase tracking-wide text-oro-claro">
+                <span className="ml-auto text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-crema-200">
                   Combo
                 </span>
               </li>
             ))}
           </ol>
         </Reveal>
-        <div className="mt-8 text-center">
+        <div className="mt-12 text-center">
           <CtaOro>
             {comboCapitulos.cta} — ${combo.precio}
           </CtaOro>
@@ -110,22 +108,22 @@ export function ComboCapitulos() {
 /* ---------- Muro de testimonios (todos los reales, con fotos) ---------- */
 export function ComboReviews() {
   return (
-    <section className="py-16 text-crema-50 sm:py-20">
+    <section className="py-24 text-crema-50 sm:py-32">
       <div className="contenedor">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-[0.78rem] font-bold uppercase tracking-[0.2em] text-oro-claro">
+            <p className="etiqueta">
               Real customer reviews
             </p>
-            <h2 className="titulo-serif mt-3 text-[1.9rem] text-crema-50 sm:text-[2.4rem]">
+            <h2 className="display-seccion mt-4">
               What people who already own it say
             </h2>
-            <div className="mt-3 flex items-center justify-center gap-2 text-oro-claro">
+            <div className="mt-5 flex items-center justify-center gap-2 text-oro-claro">
               {[...Array(5)].map((_, s) => (
                 <Star key={s} className="h-5 w-5 fill-oro-claro" aria-hidden />
               ))}
-              <span className="ml-1 text-[0.9rem] text-crema-200/75">
-                {RESENAS.length}+ people · verified purchase
+              <span className="ml-1 text-[0.9rem] text-crema-200">
+                {RESENAS.length} verified reviews
               </span>
             </div>
           </div>
@@ -136,8 +134,8 @@ export function ComboReviews() {
           <ReviewsCarousel />
         </div>
 
-        <div className="mt-10 text-center">
-          <CtaOro>I want the complete method — ${combo.precio}</CtaOro>
+        <div className="mt-14 text-center">
+          <CtaOro>Get the complete method — ${combo.precio}</CtaOro>
         </div>
       </div>
     </section>
@@ -147,14 +145,13 @@ export function ComboReviews() {
 /* ---------- Autor ---------- */
 export function ComboAutor() {
   return (
-    <section className="relative overflow-hidden py-16 text-crema-50 sm:py-20">
-      <Sparkles />
+    <section className="relative py-24 text-crema-50 sm:py-32">
       <div className="contenedor relative">
         <Reveal>
-          <div className="mx-auto grid max-w-4xl items-center gap-8 rounded-2xl border border-oro/20 bg-crema-50/[0.05] p-7 sm:p-10 md:grid-cols-[auto,1fr]">
+          <div className="mx-auto grid max-w-4xl items-center gap-10 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-8 sm:p-12 md:grid-cols-[auto,1fr]">
             {/* Retrato */}
             <div className="mx-auto md:mx-0">
-              <div className="relative h-44 w-44 overflow-hidden rounded-2xl shadow-libro ring-1 ring-oro/40 sm:h-52 sm:w-52">
+              <div className="relative h-44 w-44 overflow-hidden rounded-2xl ring-1 ring-white/12 sm:h-52 sm:w-52">
                 <Image
                   src="/img/presentador_raw.png"
                   alt="Mike Dalton"
@@ -167,10 +164,10 @@ export function ComboAutor() {
             </div>
             {/* Texto */}
             <div className="text-center md:text-left">
-              <p className="text-[0.78rem] font-bold uppercase tracking-[0.2em] text-oro-claro">
+              <p className="etiqueta">
                 {comboAutor.titulo}
               </p>
-              <h2 className="titulo-serif mt-2 text-[1.8rem] text-crema-50">
+              <h2 className="titulo-serif mt-2 text-[1.75rem]">
                 {comboAutor.nombre}
               </h2>
               <p className="text-[0.85rem] uppercase tracking-wide text-crema-200/60">
@@ -183,7 +180,7 @@ export function ComboAutor() {
                   </p>
                 ))}
               </div>
-              <p className="mt-4 font-serif text-xl text-oro-claro">
+              <p className="mt-6 font-serif text-lg tracking-display text-crema-50">
                 Real tricks, tested at home.
               </p>
             </div>
@@ -197,10 +194,10 @@ export function ComboAutor() {
 /* ---------- Value stack ---------- */
 export function ComboValueStack() {
   return (
-    <section className="py-16 text-crema-50 sm:py-20">
+    <section className="py-24 text-crema-50 sm:py-32">
       <div className="contenedor">
         <Reveal>
-          <h2 className="titulo-serif text-center text-[1.9rem] text-crema-50 sm:text-[2.4rem]">
+          <h2 className="display-seccion text-center">
             {comboValueStack.titulo}
           </h2>
         </Reveal>
@@ -239,7 +236,7 @@ export function ComboValueStack() {
               </span>
             </div>
             <div className="mt-6 text-center">
-              <CtaOro>I want the complete method — {comboValueStack.hoy}</CtaOro>
+              <CtaOro>Get the complete method — {comboValueStack.hoy}</CtaOro>
             </div>
           </div>
         </Reveal>

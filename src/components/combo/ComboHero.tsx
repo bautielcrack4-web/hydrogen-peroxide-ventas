@@ -1,15 +1,12 @@
-import { ArrowRight, Star, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import BookCover3D from "@/components/combo/BookCover3D";
-import Sparkles from "@/components/combo/Sparkles";
-import AuroraFondo from "@/components/ui/AuroraFondo";
 import CountUp from "@/components/ui/CountUp";
 import TitularHero from "@/components/combo/TitularHero";
-import CtaLabel from "@/components/ui/CtaLabel";
 import { checkoutCombo, planes } from "@/config/product";
 import { comboHero } from "@content/combo";
 
-/** Cuenta el número inicial de un stat tipo "190+", "5.000+", "7 días". */
+/** Cuenta el número inicial de un stat tipo "300+", "7 days". */
 function StatValor({ valor }: { valor: string }) {
   const m = valor.match(/^([\d.]+)/);
   if (!m) return <>{valor}</>;
@@ -23,162 +20,119 @@ function StatValor({ valor }: { valor: string }) {
 }
 
 const combo = planes.find((p) => p.id === "combo")!;
-const piel = planes.find((p) => p.id === "hogar")!;
-const salud = planes.find((p) => p.id === "reparador")!;
+const hogar = planes.find((p) => p.id === "hogar")!;
+const reparador = planes.find((p) => p.id === "reparador")!;
 
-// Parte el título para resaltar el acento en dorado cursivo (toque premium).
 const [tituloAntes, tituloDespues] = comboHero.titulo.split(
   comboHero.tituloAcento
 );
 
+/**
+ * HERO — cinco elementos y nada más.
+ *
+ * Titular · una línea · el producto · un botón · la línea de garantía.
+ * Todo lo demás (la historia larga, los stats) vive DEBAJO del pliegue:
+ * apilar diez cosas antes del primer scroll es lo que hacía que la página
+ * se leyera como un embudo y no como un producto.
+ */
 export default function ComboHero() {
   return (
-    <section
-      className="grade-joya relative overflow-hidden py-8 text-crema-50 sm:py-24"
-      style={{
-        background:
-          "radial-gradient(125% 85% at 30% 0%, #1A1B20 0%, #121317 45%, #0A0B0D 100%)",
-      }}
-    >
-      <AuroraFondo intensidad={0.6} />
-      {/* Halo de luz cálido detrás de los libros: da vida y profundidad */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div
-          className="anim-flotar-lento absolute left-1/2 top-[46%] h-[26rem] w-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[2px] sm:h-[34rem] sm:w-[34rem]"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(255,59,46,.30) 0%, rgba(130,20,11,.14) 42%, transparent 70%)",
-          }}
-        />
-      </div>
-      {/* Chispitas doradas suaves */}
-      <Sparkles />
+    <section className="relative overflow-hidden pb-20 pt-14 text-crema-50 sm:pb-28 sm:pt-24">
+      <div className="contenedor relative z-10">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="etiqueta">{comboHero.etiqueta}</p>
 
+          <h1 className="display-hero mx-auto mt-6 max-w-[16ch]">
+            <TitularHero
+              base={{
+                antes: tituloAntes,
+                acento: comboHero.tituloAcento,
+                despues: tituloDespues,
+              }}
+            />
+          </h1>
+
+          <p className="mx-auto mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-crema-200 sm:text-[1.15rem]">
+            300+ cleaning, garden &amp; repair tricks — with the exact amounts.
+            One $1 bottle.
+          </p>
+        </div>
+
+        {/* El producto. Sin flotar: quieto, con su sombra proyectada. */}
+        <div className="mt-14 flex items-end justify-center gap-5 sm:mt-20 sm:gap-12">
+          <a
+            href={reparador.checkout}
+            aria-label="Buy The Repairman's Secret"
+            className="hotmart-fb block"
+          >
+            <BookCover3D
+              src={reparador.portada}
+              alt="The Repairman's Secret"
+              width={132}
+              displayWidth="clamp(78px, 23vw, 132px)"
+            />
+          </a>
+          <a
+            href={combo.checkout}
+            aria-label="Buy the complete method"
+            className="hotmart-fb block"
+          >
+            <BookCover3D
+              src={combo.portada}
+              alt="The Complete Hydrogen Peroxide Method"
+              width={224}
+              displayWidth="clamp(126px, 38vw, 224px)"
+              priority
+            />
+          </a>
+          <a
+            href={hogar.checkout}
+            aria-label="Buy Hydrogen Peroxide at Home"
+            className="hotmart-fb block"
+          >
+            <BookCover3D
+              src={hogar.portada}
+              alt="Hydrogen Peroxide at Home"
+              width={132}
+              displayWidth="clamp(78px, 23vw, 132px)"
+            />
+          </a>
+        </div>
+
+        {/* Una sola acción. */}
+        <div className="mx-auto mt-14 flex max-w-md flex-col items-center sm:mt-16">
+          <a
+            href={checkoutCombo}
+            className="hotmart-fb boton-oro inline-flex w-full items-center justify-center rounded-[10px] px-8 py-4 text-[1.0625rem] font-semibold tracking-[-0.01em]"
+          >
+            <span>
+              {comboHero.cta} — <s className="opacity-45">${combo.precioAnterior}</s>{" "}
+              ${combo.precio}
+            </span>
+          </a>
+          <p className="mt-4 flex items-center gap-2 text-[0.82rem] text-crema-200">
+            <ShieldCheck className="h-4 w-4 flex-none" aria-hidden />
+            One-time payment · instant access · 7-day guarantee
+          </p>
+        </div>
+      </div>
+
+      {/* ---- Debajo del pliegue: la historia y los datos ---- */}
       <div className="contenedor relative z-10">
         <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-oro-claro sm:text-[0.78rem] sm:tracking-[0.22em]">
-              {comboHero.etiqueta}
-            </p>
-            <h1 className="titulo-serif mx-auto mt-3 max-w-2xl text-[1.75rem] leading-[1.12] text-crema-50 sm:mt-4 sm:text-[3rem]">
-              <TitularHero
-                base={{
-                  antes: tituloAntes,
-                  acento: comboHero.tituloAcento,
-                  despues: tituloDespues,
-                }}
-              />
-            </h1>
-            <p className="mx-auto mt-4 max-w-md text-[1.05rem] font-medium leading-snug text-crema-100 sm:mt-5 sm:max-w-2xl sm:text-[1.2rem]">
-              300+ cleaning, garden &amp; repair tricks — with the{" "}
-              <span className="font-semibold text-oro-claro">exact amounts</span>. One
-              $1 bottle.
-            </p>
-          </div>
-        </Reveal>
-
-        {/* Los tres libros flotando en 3D: combo grande al centro */}
-        <Reveal delay={120}>
-          <div className="mt-6 flex items-end justify-center gap-4 sm:mt-14 sm:gap-10">
-            <a
-              href={salud.checkout}
-              aria-label="Buy The Repairman's Secret"
-              className="hotmart-fb block cursor-pointer"
-            >
-              <BookCover3D
-                src={salud.portada}
-                alt="The Repairman's Secret"
-                width={128}
-                displayWidth="clamp(76px, 23vw, 128px)"
-                delay={0}
-              />
-            </a>
-            <div className="relative">
-              <span className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-oro px-3 py-1 text-[0.65rem] font-bold uppercase tracking-wide text-bosque shadow-tarjeta">
-                The complete method
-              </span>
-              <a
-                href={combo.checkout}
-                aria-label="Buy the complete method"
-                className="hotmart-fb block cursor-pointer"
-              >
-                <BookCover3D
-                  src={combo.portada}
-                  alt="The Complete Hydrogen Peroxide Method"
-                  width={210}
-                  displayWidth="clamp(118px, 37vw, 210px)"
-                  priority
-                  delay={600}
-                />
-              </a>
-            </div>
-            <a
-              href={piel.checkout}
-              aria-label="Buy Hydrogen Peroxide at Home"
-              className="hotmart-fb block cursor-pointer"
-            >
-              <BookCover3D
-                src={piel.portada}
-                alt="Hydrogen Peroxide at Home"
-                width={128}
-                displayWidth="clamp(76px, 23vw, 128px)"
-                delay={1200}
-              />
-            </a>
-          </div>
-        </Reveal>
-
-        {/* CTA principal al combo (arriba de los stats: se ve antes en móvil) */}
-        <Reveal delay={180}>
-          <div className="mx-auto mt-7 flex max-w-md flex-col items-center">
-            <div className="mb-3 flex items-center gap-1 text-oro-claro">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-oro-claro" aria-hidden />
-              ))}
-            </div>
-            <a
-              href={checkoutCombo}
-              className="hotmart-fb boton-oro group inline-flex w-full items-center justify-center gap-2.5 rounded-full px-8 py-4 text-lg font-bold text-bosque shadow-libro hover:-translate-y-0.5 active:scale-[.98]"
-            >
-              <span>
-                <CtaLabel base={comboHero.cta} /> —{" "}
-                <s className="opacity-50">${combo.precioAnterior}</s> $
-                {combo.precio}
-              </span>
-              <ArrowRight
-                className="h-5 w-5 transition-transform group-hover:translate-x-1"
-                aria-hidden
-              />
-            </a>
-            <p className="mt-3 flex items-center gap-1.5 text-[0.82rem] text-crema-200/70">
-              <ShieldCheck className="h-4 w-4 text-oro-claro" aria-hidden />
-              One-time payment · instant access · 7-day guarantee
-            </p>
-            <p className="mt-4 max-w-sm text-center font-serif text-[1.02rem] italic text-oro-claro">
-              {comboHero.anclaValor}
-            </p>
-          </div>
-        </Reveal>
-
-        {/* Historia completa (debajo del CTA: no tapa el primer impacto en móvil) */}
-        <Reveal delay={210}>
-          <p className="mx-auto mt-8 max-w-2xl text-center text-[0.98rem] leading-relaxed text-crema-200/80 sm:mt-10 sm:text-[1.05rem]">
+          <p className="mx-auto mt-24 max-w-prosa text-center text-[1.0625rem] leading-[1.7] text-crema-200 sm:mt-32">
             {comboHero.subtitulo}
           </p>
         </Reveal>
 
-        {/* Stats (debajo del CTA) */}
-        <Reveal delay={240}>
-          <ul className="mx-auto mt-8 grid max-w-md grid-cols-2 gap-2.5 text-center sm:mt-10 sm:flex sm:max-w-2xl sm:flex-wrap sm:justify-center sm:gap-x-8 sm:gap-y-3">
+        <Reveal delay={80}>
+          <ul className="mx-auto mt-14 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-10 text-center sm:grid-cols-4">
             {comboHero.stats.map((st) => (
-              <li
-                key={st.etiqueta}
-                className="neo neo-press flex flex-col items-center justify-center rounded-xl px-2 py-3 sm:bg-transparent sm:p-0 sm:shadow-none"
-              >
-                <span className="font-serif text-2xl font-extrabold text-oro-claro">
+              <li key={st.etiqueta} className="flex flex-col items-center gap-1.5">
+                <span className="font-serif text-[2rem] font-extrabold leading-none tracking-display text-crema-50">
                   <StatValor valor={st.valor} />
                 </span>
-                <span className="text-[0.72rem] text-crema-200/70 sm:text-[0.78rem]">
+                <span className="text-[0.78rem] uppercase tracking-[0.12em] text-crema-200">
                   {st.etiqueta}
                 </span>
               </li>

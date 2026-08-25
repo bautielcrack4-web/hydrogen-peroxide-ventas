@@ -1,9 +1,8 @@
 "use client";
 
-import { Check, ArrowRight, Gift } from "lucide-react";
+import { Check, Gift } from "lucide-react";
 import Anim from "@/components/ui/Anim";
 import CountUp from "@/components/ui/CountUp";
-import Confeti from "@/components/ui/Confeti";
 import CheckoutLink from "@/components/ui/CheckoutLink";
 import { useInView } from "@/components/ui/useInView";
 import { comboValueStack } from "@content/combo";
@@ -19,14 +18,14 @@ export default function ValueStackRegalado() {
   const [ref, enVista] = useInView<HTMLDivElement>();
 
   return (
-    <section className="cv-auto py-16 text-crema-50 sm:py-20">
+    <section className="cv-auto py-24 text-crema-50 sm:py-32">
       <div className="contenedor">
         <Anim>
           <div className="mx-auto max-w-xl text-center">
-            <h2 className="titulo-serif texto-oro-vivo text-[1.9rem] sm:text-[2.4rem]">
+            <h2 className="display-seccion">
               {comboValueStack.titulo}
             </h2>
-            <p className="mt-3 text-[1rem] text-crema-200/80 sm:text-[1.08rem]">
+            <p className="mt-5 text-[1.0625rem] leading-relaxed text-crema-200">
               Add up what each piece is worth on its own. Then look at what you pay today.
             </p>
           </div>
@@ -34,9 +33,8 @@ export default function ValueStackRegalado() {
 
         <div
           ref={ref}
-          className="relative mx-auto mt-8 max-w-xl rounded-2xl bg-crema-50 p-6 text-tinta shadow-libro sm:p-9"
+          className="relative mx-auto mt-12 max-w-xl rounded-2xl bg-crema-50 p-7 text-tinta shadow-libro sm:p-10"
         >
-          <Confeti />
           <ul className="divide-y divide-dotted divide-arena">
             {comboValueStack.items.map((it, i) => (
               <Anim key={it.t} variant="left" delay={i * 80} as="li">
@@ -76,7 +74,7 @@ export default function ValueStackRegalado() {
               </div>
               <div className="h-3 w-full overflow-hidden rounded-full bg-tinta/[0.08]">
                 <div
-                  className="h-full rounded-full bg-[linear-gradient(90deg,#E11D0F,#FF3B2E)] transition-[width] duration-[1400ms] ease-out"
+                  className="h-full rounded-full bg-oro transition-[width] duration-[1400ms] ease-out"
                   style={{ width: enVista ? `${(HOY / VALOR) * 100}%` : "0%" }}
                 />
               </div>
@@ -93,25 +91,21 @@ export default function ValueStackRegalado() {
                 <CountUp value={VALOR} prefix="$" />
               </span>
               {enVista && (
-                <span className="precio-vivo animate-slam font-serif text-[3.6rem] font-extrabold leading-none">
+                <span className="font-serif text-[3.75rem] font-extrabold leading-none tracking-display text-tinta">
                   ${HOY}
                 </span>
               )}
             </p>
-            <span
-              className="animate-latido inline-flex items-center gap-2 rounded-full bg-[linear-gradient(95deg,#C41306,#FF3B2E_55%,#E11D0F)] px-4 py-1.5 text-[0.9rem] font-bold text-white"
-              style={{ boxShadow: "0 0 20px -2px rgba(255,59,46,.7)" }}
-            >
+            <span className="inline-flex items-center gap-2 rounded-full bg-oro px-4 py-1.5 text-[0.88rem] font-semibold text-white">
               <Gift className="h-4 w-4" aria-hidden /> Save ${AHORRO} · {PCT}% off
             </span>
           </div>
 
           <CheckoutLink
             href={checkoutCombo}
-            className="boton-oro barrido group relative mt-7 inline-flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-full px-6 py-4 text-[1.05rem] font-bold text-bosque shadow-libro transition-all duration-200 hover:-translate-y-0.5 active:scale-[.98]"
+            className="boton-oro mt-8 inline-flex w-full items-center justify-center rounded-[10px] px-6 py-4 text-[1.0625rem] font-semibold tracking-[-0.01em]"
           >
-            I want the complete method · ${HOY}
-            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
+            Get the complete method · ${HOY}
           </CheckoutLink>
           <p className="mt-3 text-center text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-tinta/50">
             One-time payment · instant access · 7-day guarantee

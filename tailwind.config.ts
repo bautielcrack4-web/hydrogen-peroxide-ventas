@@ -1,17 +1,21 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Identidad "Agua Oxigenada / Trucos" — editorial callejera de alto impacto.
- * NEGRO cinematográfico + BLANCO + acento ROJO (pega con las miniaturas
- * "EXCLUSIVE · HYDROGEN PEROXIDE TRICKS!"). Contraste altísimo, urgencia.
+ * Identidad "Agua Oxigenada / Trucos" — EDITORIAL OSCURO PREMIUM.
+ *
+ * Regla de oro del rediseño: UN SOLO color saturado en toda la página.
+ * El rojo existe para el botón de compra y nada más. Todo el resto es una
+ * escala neutra fría (casi negro → blanco) con un blanco cálido para los
+ * micro-acentos. El contraste se gana con TIPOGRAFÍA y AIRE, no con brillo.
  *
  * NOTA: se conservan los NOMBRES de tokens del andamiaje (teal/oro/crema/…)
  * y solo se cambian sus VALORES, para no reescribir cada componente:
- *   - crema  = blancos / grises muy claros
- *   - tinta  = casi negro (texto sobre claro)
- *   - teal   = familia NEGRO/GRAFITO (fondos oscuros + acento serio en claro)
- *   - oro    = ROJO (el "pop": botones, badges, resaltados)
- *   - bosque = texto sobre botón rojo (blanco)
+ *   - crema      = blancos / grises claros (texto sobre oscuro)
+ *   - tinta      = casi negro (texto sobre claro)
+ *   - teal       = familia de SUPERFICIES oscuras
+ *   - oro        = ROJO de acción (SOLO botones y badges de compra)
+ *   - oro.claro  = blanco cálido de micro-acento (iconos, estrellas, reglas)
+ *   - bosque     = texto sobre el botón rojo (blanco)
  */
 const config: Config = {
   content: ["./src/**/*.{ts,tsx}", "./content/**/*.{ts,tsx}"],
@@ -19,34 +23,34 @@ const config: Config = {
     extend: {
       colors: {
         crema: {
-          DEFAULT: "#F4F4F3",
+          DEFAULT: "#FFFFFF",
           50: "#FFFFFF",
-          100: "#EFEEEC",
-          200: "#DEDEDB",
+          100: "#F1F2F4", // superficie clara secundaria
+          200: "#A9ADB5", // texto secundario sobre oscuro
         },
-        arena: "#CFCFCB",
-        tinta: "#131313",
+        arena: "#2A2D33", // bordes sobre oscuro
+        tinta: "#0F1012", // texto sobre claro
         teal: {
-          DEFAULT: "#1F2126", // acento "serio" (casi negro) sobre claro
-          dark: "#14151A",
-          light: "#ECECEE",
-          // Fondos oscuros cinematográficos.
-          noche: "#17181C",
-          abismo: "#0A0B0D",
+          DEFAULT: "#16181C", // superficie oscura elevada
+          dark: "#101114",
+          light: "#F1F2F4",
+          noche: "#141519",
+          abismo: "#0B0C0E", // base del lienzo
         },
         bosque: {
           DEFAULT: "#FFFFFF", // texto sobre el botón rojo
-          dark: "#0E0F11",
+          dark: "#0B0C0E",
         },
         oro: {
-          DEFAULT: "#E11D0F", // ROJO acento
-          claro: "#FF3B2E", // rojo brillante
+          DEFAULT: "#D0342A", // ROJO de acción — el ÚNICO color saturado
+          claro: "#D9D5CE", // blanco cálido: micro-acentos, iconos, estrellas
         },
-        vino: "#B0110A",
-        // Rojo de urgencia/alertas (descuentos, escasez, ahorro).
+        vino: "#A0231B",
+        // Rojo de urgencia/alertas (descuentos, ahorro). Misma familia: no
+        // se abren dos rojos distintos.
         alerta: {
-          DEFAULT: "#E5372B",
-          claro: "#FF5A47",
+          DEFAULT: "#D0342A",
+          claro: "#E05A4E",
         },
       },
       fontFamily: {
@@ -54,15 +58,19 @@ const config: Config = {
         serif: ["var(--font-bitter)", "Georgia", "serif"],
       },
       maxWidth: {
-        prosa: "66ch",
+        prosa: "62ch",
       },
+      // Sombras de ELEVACIÓN real (luz cenital), no halos de neón.
       boxShadow: {
-        suave: "0 14px 44px -20px rgba(0, 0, 0, 0.5)",
-        tarjeta: "0 6px 26px -14px rgba(0, 0, 0, 0.4)",
-        libro: "0 34px 70px -28px rgba(0, 0, 0, 0.7)",
+        suave: "0 1px 2px rgba(0,0,0,.45), 0 8px 24px -16px rgba(0,0,0,.7)",
+        tarjeta: "0 1px 2px rgba(0,0,0,.4), 0 12px 32px -20px rgba(0,0,0,.65)",
+        libro: "0 2px 4px rgba(0,0,0,.45), 0 32px 64px -32px rgba(0,0,0,.8)",
       },
       borderRadius: {
         xl2: "1.25rem",
+      },
+      letterSpacing: {
+        display: "-0.035em",
       },
     },
   },
