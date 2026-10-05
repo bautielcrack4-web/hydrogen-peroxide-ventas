@@ -90,6 +90,8 @@ export default function RootLayout({
           src="https://static.hotmart.com/checkout/widget.min.js"
           strategy="afterInteractive"
         />
+        {/* Bagasy: manda a Hotmart el código del video con el que llegó el visitante (sck) */}
+        <script src="/bg-rastreo.js" defer />
       </body>
     </html>
   );
