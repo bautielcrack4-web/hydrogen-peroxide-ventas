@@ -22,8 +22,8 @@ import Footer from "@/components/landing/Footer";
 import Reveal from "@/components/ui/Reveal";
 import { comboGarantia, comboFaq, comboCierre, comboLegal } from "@content/combo";
 import { checkoutCombo, product, planes } from "@/config/product";
+import { DscBarra, Precio } from "@/components/ui/Dsc";
 
-const precioCombo = planes.find((p) => p.id === "combo")!.precio;
 
 /**
  * Orden de las secciones según lo que el usuario respondió en el onboarding.
@@ -52,6 +52,8 @@ export default function MetodoCompleto() {
   return (
     <>
       <ScrollProgress />
+      {/* first-visit discount bar: counts down to the next REAL price step */}
+      <DscBarra />
       <ComboTopBar />
       <main className="lienzo">
         <ComboHero />
@@ -83,7 +85,7 @@ export default function MetodoCompleto() {
                     href={checkoutCombo}
                     className="hotmart-fb boton-oro mt-10 inline-flex items-center justify-center rounded-[10px] px-8 py-4 text-[1.0625rem] font-semibold tracking-[-0.01em]"
                   >
-                    {comboCierre.cta} — ${precioCombo}
+                    {comboCierre.cta} — <Precio />
                   </a>
                 </div>
               </Reveal>

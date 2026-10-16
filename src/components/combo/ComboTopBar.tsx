@@ -1,6 +1,7 @@
 import Marca from "@/components/ui/Marca";
 import { checkoutCombo, planes } from "@/config/product";
 import { comboBarra } from "@content/combo";
+import { Precio } from "@/components/ui/Dsc";
 
 const combo = planes.find((p) => p.id === "combo")!;
 
@@ -21,13 +22,13 @@ export default function ComboTopBar() {
         <div className="flex items-center gap-4">
           <span className="hidden items-baseline gap-2 text-[0.85rem] sm:flex">
             <s className="text-crema-200/50">${combo.precioAnterior}</s>
-            <span className="font-semibold text-crema-50">${combo.precio}</span>
+            <span className="font-semibold text-crema-50"><Precio /></span>
           </span>
           <a
             href={checkoutCombo}
             className="hotmart-fb boton-oro whitespace-nowrap rounded-[8px] px-4 py-2 text-[0.85rem] font-semibold"
           >
-            {comboBarra.cta}
+            Get the method · <Precio />
           </a>
         </div>
       </div>

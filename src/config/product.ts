@@ -58,7 +58,7 @@ export const checkoutReparador =
   "https://pay.hotmart.com/P107183967C?checkoutMode=2"; // VOL 2 ($29)
 export const checkoutCombo =
   process.env.NEXT_PUBLIC_CHECKOUT_COMBO_URL ||
-  "https://pay.hotmart.com/H107184004X?checkoutMode=2"; // Complete Method ($47)
+  "https://pay.hotmart.com/H107184004X?checkoutMode=2&off=wexn2km4"; // Complete Method: escalera 47 → 62,99 → 77,99 (el kit dsc pone la oferta del escalón)
 
 // The Master Recipe Book, sold standalone (optional). No product for now.
 export const checkoutRecetario =
@@ -108,7 +108,7 @@ export const planes = [
     id: "combo",
     nombre: "The Complete Method",
     resumen:
-      "All 3 guides together + The Master Recipe Book and every bonus, for less than buying them apart.",
+      "All 3 guides together + The Master Recipe Book and every bonus, in one payment.",
     precio: "47",
     precioAnterior: "180",
     checkout: checkoutCombo,

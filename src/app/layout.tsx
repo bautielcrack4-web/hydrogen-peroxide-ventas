@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Inter, Archivo } from "next/font/google";
 import "./globals.css";
 import { product } from "@/config/product";
+import { DscHead, DscScript } from "@/components/ui/Dsc";
 
 // Cuerpo: Inter en pesos medios/altos — máxima legibilidad.
 const inter = Inter({
@@ -76,8 +77,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${archivo.variable}`}>
+    <html lang="en" className={`${inter.variable} ${archivo.variable}`} suppressHydrationWarning>
       <head>
+        <link rel="stylesheet" href="/dsc/dsc.css" />
+        <DscHead />
         {/* Widget de checkout de Hotmart: abre el pago como overlay (checkoutMode=2) */}
         <link
           rel="stylesheet"
@@ -92,6 +95,7 @@ export default function RootLayout({
         />
         {/* Bagasy: manda a Hotmart el código del video con el que llegó el visitante (sck) */}
         <script src="/bg-rastreo.js" defer />
+        <DscScript />
       </body>
     </html>
   );

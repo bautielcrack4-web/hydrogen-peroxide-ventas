@@ -2,6 +2,7 @@ import { Check, Lock, Minus, Crown } from "lucide-react";
 import Anim from "@/components/ui/Anim";
 import CheckoutLink from "@/components/ui/CheckoutLink";
 import { checkoutHogar, checkoutReparador, checkoutCombo } from "@/config/product";
+import { Precio } from "@/components/ui/Dsc";
 
 type Fila = { t: string; v: [boolean, boolean, boolean]; excl?: boolean };
 
@@ -104,7 +105,7 @@ export default function Comparativa() {
                           c.destacado ? "text-teal" : "text-tinta/70"
                         }`}
                       >
-                        ${c.precio}
+                        {c.destacado ? <Precio /> : `$${c.precio}`}
                       </span>
                     </th>
                   ))}
@@ -155,7 +156,7 @@ export default function Comparativa() {
                       href={checkoutCombo}
                       className="boton-oro inline-block rounded-[7px] px-3 py-2 text-[0.75rem] font-semibold"
                     >
-                      $47
+                      <Precio />
                     </CheckoutLink>
                   </td>
                 </tr>
@@ -170,7 +171,7 @@ export default function Comparativa() {
               href={checkoutCombo}
               className="boton-oro inline-flex items-center justify-center rounded-[10px] px-9 py-4 text-[1.0625rem] font-semibold tracking-[-0.01em]"
             >
-              Get the complete method · $47
+              Get the complete method · <Precio />
             </CheckoutLink>
           </div>
         </Anim>

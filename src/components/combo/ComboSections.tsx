@@ -29,6 +29,7 @@ import {
   comboPago,
 } from "@content/combo";
 import comboWall from "@content/combo-reviews.json";
+import { Precio } from "@/components/ui/Dsc";
 
 const combo = planes.find((p) => p.id === "combo")!;
 
@@ -188,7 +189,7 @@ export function ComboCapitulos() {
         </Reveal>
         <div className="mt-12 text-center">
           <CtaOro>
-            {comboCapitulos.cta} — ${combo.precio}
+            {comboCapitulos.cta} — <Precio />
           </CtaOro>
         </div>
       </div>
@@ -226,7 +227,7 @@ export function ComboReviews() {
         </div>
 
         <div className="mt-14 text-center">
-          <CtaOro>Get the complete method — ${combo.precio}</CtaOro>
+          <CtaOro>Get the complete method — <Precio /></CtaOro>
         </div>
       </div>
     </section>

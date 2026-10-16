@@ -7,6 +7,7 @@ import CheckoutLink from "@/components/ui/CheckoutLink";
 import { usePerfil } from "@/components/ui/usePerfil";
 import { planes, comboConfigurado } from "@/config/product";
 import { comboEleccion } from "@content/combo";
+import { Precio } from "@/components/ui/Dsc";
 
 /**
  * Encabezado de la sección de precios, personalizado según lo que el
@@ -147,7 +148,7 @@ function PlanCard({
       {/* Badge de ahorro en la esquina (estilo "$X OFF") */}
       {ahorro && (
         <span className="absolute right-4 top-4 rounded-md bg-alerta px-2.5 py-1 text-[0.72rem] font-bold text-crema-50 shadow-tarjeta">
-          ${ahorro} OFF
+          {plan.id === "combo" ? <Precio k={1} /> : `$${ahorro}`} OFF
         </span>
       )}
 
@@ -196,7 +197,7 @@ function PlanCard({
             destacado ? "text-teal" : "text-crema-50"
           }`}
         >
-          USD {plan.precio}
+          {plan.id === "combo" ? <Precio pre="USD " /> : `USD ${plan.precio}`}
         </span>
         {"ahorro" in plan && plan.ahorro && (
           <p className="mt-1.5 text-[0.85rem] font-bold text-alerta">
@@ -301,7 +302,7 @@ function PlanCard({
           }`}
         >
           <span>
-            {plan.cta} · ${plan.precio}
+            {plan.cta} · {plan.id === "combo" ? <Precio /> : `$${plan.precio}`}
           </span>
         </CheckoutLink>
         <p

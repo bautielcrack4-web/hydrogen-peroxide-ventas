@@ -6,6 +6,7 @@ import { X, ChevronLeft, ChevronRight, Lock, BookOpen, ArrowRight, Star, Gift } 
 import CheckoutLink from "@/components/ui/CheckoutLink";
 import { usePerfil } from "@/components/ui/usePerfil";
 import { checkoutCombo } from "@/config/product";
+import { Precio } from "@/components/ui/Dsc";
 
 // Se muestran COMPLETAS (con marca de agua "Muestra" en la página): la idea
 // es que la gente VEA el valor real. El candado no tapa el contenido.
@@ -245,7 +246,7 @@ export default function FlipbookBotox() {
                               href={checkoutCombo}
                               className="boton-oro mt-5 inline-flex w-full items-center justify-center gap-2 rounded-[9px] px-5 py-3.5 text-[0.98rem] font-semibold"
                             >
-                              Unlock it with the combo · $47
+                              Unlock it with the combo · <Precio />
                               <ArrowRight className="h-4 w-4" aria-hidden />
                             </CheckoutLink>
                           </div>

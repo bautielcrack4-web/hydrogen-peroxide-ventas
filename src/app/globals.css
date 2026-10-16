@@ -325,3 +325,16 @@ body {
   box-shadow: inset 0 -0.13em 0 0 var(--accion);
   padding-bottom: 0.02em;
 }
+
+
+/* ─────────────────────────────────────────────────────────────
+   FIRST-VISIT DISCOUNT (dsc kit · public/dsc): dark hero, AAA on price and buttons
+   ───────────────────────────────────────────────────────────── */
+:root { --dsc-ink: #FFF8EC; --dsc-ink2: #E9DCC0; --dsc-strike: #FF8A70; --dsc-note: #F0D98A; --dsc-claim: #F0D98A; }
+.dsc-claim { color: #1F160C; }
+.dsc-claim.dsc-ok { color: #fff; }
+.dsc-box { margin: 0; }
+.dsc-swap .boton-oro { margin: 0; background: #A3231B; background-image: none; color: #fff; } /* AAA: blanco sobre rojo oscuro (8:1) */
+.dsc-kick { font-size: 19px; line-height: 1.4; color: #FFF8EC; margin: 0 0 4px; }
+.dsc-kick b { color: #F0D98A; }
+@media (max-width: 760px) { .dsc-kick { font-size: 18px; } }

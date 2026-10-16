@@ -5,6 +5,7 @@ import CountUp from "@/components/ui/CountUp";
 import TitularHero from "@/components/combo/TitularHero";
 import { checkoutCombo, planes } from "@/config/product";
 import { comboHero } from "@content/combo";
+import { DscCaja } from "@/components/ui/Dsc";
 
 /** Cuenta el número inicial de un stat tipo "300+", "7 days". */
 function StatValor({ valor }: { valor: string }) {
@@ -40,7 +41,10 @@ export default function ComboHero() {
     <section className="relative overflow-hidden pb-20 pt-14 text-crema-50 sm:pb-28 sm:pt-24">
       <div className="contenedor relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="etiqueta">{comboHero.etiqueta}</p>
+          <p className="dsc-kick">
+            <b>The Complete Hydrogen Peroxide Method</b> · 3 PDF guides + a recipe book with 300+ cleaning, garden and repair uses
+          </p>
+          <p className="etiqueta mt-5">{comboHero.etiqueta}</p>
 
           <h1 className="display-hero mx-auto mt-6 max-w-[16ch]">
             <TitularHero
@@ -75,7 +79,7 @@ export default function ComboHero() {
           <a
             href={combo.checkout}
             aria-label="Buy the complete method"
-            className="hotmart-fb block"
+            className="dsc-heroimg hotmart-fb block"
           >
             <BookCover3D
               src={combo.portada}
@@ -101,16 +105,19 @@ export default function ComboHero() {
 
         {/* Una sola acción. */}
         <div className="mx-auto mt-14 flex max-w-md flex-col items-center sm:mt-16">
-          <a
-            href={checkoutCombo}
-            className="hotmart-fb boton-oro inline-flex w-full items-center justify-center rounded-[10px] px-8 py-4 text-[1.0625rem] font-semibold tracking-[-0.01em]"
-          >
-            <span>
-              {comboHero.cta} — <s className="opacity-45">${combo.precioAnterior}</s>{" "}
-              ${combo.precio}
-            </span>
-          </a>
-          <p className="mt-4 flex items-center gap-2 text-[0.82rem] text-crema-200">
+          {/* first-visit discount: the real Hotmart ladder, with the buy button inside (components/ui/Dsc.tsx) */}
+          <div className="w-full text-left">
+            <DscCaja>
+              <a
+                id="dsc-cta"
+                href={checkoutCombo}
+                className="hotmart-fb boton-oro flex w-full items-center justify-center rounded-[10px] px-8 py-4 text-[19px] font-semibold tracking-[-0.01em]"
+              >
+                {comboHero.cta}
+              </a>
+            </DscCaja>
+          </div>
+          <p className="mt-4 flex items-center gap-2 text-[17px] text-crema-100">
             <Lock className="h-3.5 w-3.5 flex-none" strokeWidth={2} aria-hidden />
             Encrypted checkout · instant access · 7-day refund
           </p>

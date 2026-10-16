@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import CheckoutLink from "@/components/ui/CheckoutLink";
 import { checkoutCombo, planes } from "@/config/product";
+import { Precio } from "@/components/ui/Dsc";
 
 const combo = planes.find((p) => p.id === "combo")!;
 
@@ -26,12 +27,12 @@ export default function StickyCompra() {
         <div className="leading-tight">
           <p className="flex items-baseline gap-2">
             <span className="font-serif text-xl font-extrabold tracking-display text-crema-50 sm:text-2xl">
-              ${combo.precio}
+              <Precio />
             </span>
             <s className="text-sm text-crema-200/60">${combo.precioAnterior}</s>
           </p>
           <p className="text-[0.72rem] leading-tight text-crema-200">
-            Save $133 &middot; 7-day guarantee
+            Save <Precio k={1} /> &middot; 7-day guarantee
           </p>
         </div>
         <CheckoutLink

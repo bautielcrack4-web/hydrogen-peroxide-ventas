@@ -7,14 +7,13 @@ import CheckoutLink from "@/components/ui/CheckoutLink";
 import { useInView } from "@/components/ui/useInView";
 import { comboValueStack } from "@content/combo";
 import { checkoutCombo } from "@/config/product";
+import { Precio, usePrecio } from "@/components/ui/Dsc";
 
 const soloNum = (s: string) => Number(String(s).replace(/[^0-9]/g, "")) || 0;
 
 export default function ValueStackRegalado() {
   const VALOR = soloNum(comboValueStack.totalTachado);
-  const HOY = soloNum(comboValueStack.hoy);
-  const AHORRO = VALOR - HOY;
-  const PCT = VALOR ? Math.round((AHORRO / VALOR) * 100) : 0;
+  const HOY = usePrecio(); // current step of the price ladder
   const [ref, enVista] = useInView<HTMLDivElement>();
 
   return (
@@ -70,7 +69,7 @@ export default function ValueStackRegalado() {
             <div>
               <div className="mb-1.5 flex items-baseline justify-between text-[0.82rem] font-semibold uppercase tracking-wide text-teal">
                 <span>What you pay today</span>
-                <span className="font-serif text-lg text-teal">${HOY}</span>
+                <span className="font-serif text-lg text-teal"><Precio /></span>
               </div>
               <div className="h-3 w-full overflow-hidden rounded-full bg-tinta/[0.08]">
                 <div
@@ -92,12 +91,12 @@ export default function ValueStackRegalado() {
               </span>
               {enVista && (
                 <span className="font-serif text-[3.75rem] font-extrabold leading-none tracking-display text-tinta">
-                  ${HOY}
+                  <Precio />
                 </span>
               )}
             </p>
             <span className="inline-flex items-center gap-2 rounded-full bg-oro px-4 py-1.5 text-[0.88rem] font-semibold text-white">
-              <Gift className="h-4 w-4" aria-hidden /> Save ${AHORRO} · {PCT}% off
+              <Gift className="h-4 w-4" aria-hidden /> Save <Precio k={1} /> · <Precio k={2} pre="" />% off
             </span>
           </div>
 
@@ -105,7 +104,7 @@ export default function ValueStackRegalado() {
             href={checkoutCombo}
             className="boton-oro mt-8 inline-flex w-full items-center justify-center rounded-[10px] px-6 py-4 text-[1.0625rem] font-semibold tracking-[-0.01em]"
           >
-            Get the complete method · ${HOY}
+            Get the complete method · <Precio />
           </CheckoutLink>
           <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-tinta/50">
             <Lock className="h-3 w-3 flex-none" strokeWidth={2.4} aria-hidden />
